@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ModelOfertas.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CATEGORIA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="40" Nullable="false" />
+        </EntityType>
         <EntityType Name="COMUNA">
           <Key>
             <PropertyRef Name="ID" />
@@ -71,6 +78,26 @@
           <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar2" MaxLength="40" Nullable="false" />
         </EntityType>
+        <EntityType Name="SUBCATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="CATEGORIA_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="CATEGORIA_SUBCATE_FK">
+          <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
+          <End Role="SUBCATE" Type="Self.SUBCATE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SUBCATE">
+              <PropertyRef Name="CATEGORIA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="COMUNA_PROVINCIA_FK">
           <End Role="PROVINCIA" Type="Self.PROVINCIA" Multiplicity="1" />
           <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="*" />
@@ -173,6 +200,7 @@
           <Parameter Name="NOMBRE_REGION" Type="varchar2" Mode="In" />
         </Function>
         <EntityContainer Name="ModelOfertasStoreContainer">
+          <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="COMUNA" EntityType="Self.COMUNA" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="DIRECCION" EntityType="Self.DIRECCION" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="PERFIL" EntityType="Self.PERFIL" Schema="DBOFERTAS" store:Type="Tables" />
@@ -180,6 +208,11 @@
           <EntitySet Name="PERSONA" EntityType="Self.PERSONA" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="PROVINCIA" EntityType="Self.PROVINCIA" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="REGION" EntityType="Self.REGION" Schema="DBOFERTAS" store:Type="Tables" />
+          <EntitySet Name="SUBCATE" EntityType="Self.SUBCATE" Schema="DBOFERTAS" store:Type="Tables" />
+          <AssociationSet Name="CATEGORIA_SUBCATE_FK" Association="Self.CATEGORIA_SUBCATE_FK">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="SUBCATE" EntitySet="SUBCATE" />
+          </AssociationSet>
           <AssociationSet Name="COMUNA_PROVINCIA_FK" Association="Self.COMUNA_PROVINCIA_FK">
             <End Role="PROVINCIA" EntitySet="PROVINCIA" />
             <End Role="COMUNA" EntitySet="COMUNA" />
@@ -369,6 +402,12 @@
             <Parameter Name="PERSONA_RUT" Mode="In" Type="String" />
             <Parameter Name="PERSONA_CONTRASENA" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="CATEGORIA" EntityType="ModelOfertas.CATEGORIA" />
+          <EntitySet Name="SUBCATE" EntityType="ModelOfertas.SUBCATE" />
+          <AssociationSet Name="CATEGORIA_SUBCATE_FK" Association="ModelOfertas.CATEGORIA_SUBCATE_FK">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="SUBCATE" EntitySet="SUBCATE" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="PERSONA_DIRECCION_FK">
           <End Type="ModelOfertas.DIRECCION" Role="DIRECCION" Multiplicity="0..1" />
@@ -379,6 +418,35 @@
             </Principal>
             <Dependent Role="PERSONA">
               <PropertyRef Name="DIRECCION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CATEGORIA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SUBCATE" Relationship="ModelOfertas.CATEGORIA_SUBCATE_FK" FromRole="CATEGORIA" ToRole="SUBCATE" />
+        </EntityType>
+        <EntityType Name="SUBCATE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="CATEGORIA_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <NavigationProperty Name="CATEGORIA" Relationship="ModelOfertas.CATEGORIA_SUBCATE_FK" FromRole="SUBCATE" ToRole="CATEGORIA" />
+        </EntityType>
+        <Association Name="CATEGORIA_SUBCATE_FK">
+          <End Type="ModelOfertas.CATEGORIA" Role="CATEGORIA" Multiplicity="1" />
+          <End Type="ModelOfertas.SUBCATE" Role="SUBCATE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SUBCATE">
+              <PropertyRef Name="CATEGORIA_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -466,6 +534,23 @@
           <FunctionImportMapping FunctionImportName="PROVINCIA_PROCEDURE" FunctionName="ModelOfertas.Store.PROVINCIA_PROCEDURE" />
           <FunctionImportMapping FunctionImportName="REGION_PROCEDURE" FunctionName="ModelOfertas.Store.REGION_PROCEDURE" />
           <FunctionImportMapping FunctionImportName="PERSONA_PROCEDURE" FunctionName="ModelOfertas.Store.PERSONA_PROCEDURE" />
+          <EntitySetMapping Name="CATEGORIA">
+            <EntityTypeMapping TypeName="ModelOfertas.CATEGORIA">
+              <MappingFragment StoreEntitySet="CATEGORIA">
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUBCATE">
+            <EntityTypeMapping TypeName="ModelOfertas.SUBCATE">
+              <MappingFragment StoreEntitySet="SUBCATE">
+                <ScalarProperty Name="CATEGORIA_ID" ColumnName="CATEGORIA_ID" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
