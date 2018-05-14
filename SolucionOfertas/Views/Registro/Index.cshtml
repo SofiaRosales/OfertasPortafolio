@@ -2,40 +2,90 @@
 @{
     ViewBag.Title = "Registro";
 }
-
+<br />
+<br />
+<br />
 <h2>Registro</h2>
-<hr />
+
 <form method="post" action="@Url.Action("Registro", "Registro")">
+
+    <table style="width:80%">
+        <tr>
+            <td><div class="row form-group">
+                <label class="col-md-3 col-form-label" style="text-align:left">RUT:</label>
+                <input type="text" class="form-control col-md-5" maxlength="8" name="rut">  -
+                <input class="form-controlser" id="dv" placeholder="1" style="width:7%" maxlength="1">
+                <span class="toolTip errorInput">Este campo es obligatorio.</span>
+            </div>
+                <div class="row form-group">
+                    <label class="col-md-3 col-form-label" style="text-align:left">EMAIL:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="correo" />
+                    </div>
+                </div>
+
+                <div class="row form-group">
+                    <label class="col-md-3 col-form-label">CONTRASEÑA:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="pass" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-md-3 col-form-label">CONFIRME CONTRASEÑA:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="pass" />
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-md-3 col-form-label">CONFIRME CONTRASEÑA:</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" name="pass" />
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="form-group">
+                    <label>Región</label>
+                    <select class="custom-select">
+                        <option selected="">Seleccione región</option>
+                        <option value="region1">region1</option>
+                        <option value="region2">regionTwo</option>
+                        <option value="region3">regionThree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Provincia</label>
+                    <select class="custom-select">
+                        <option selected="">Seleccione provincia</option>
+                        <option value="Provincia1">ProvinciaOne</option>
+                        <option value="Provincia2">ProvinciaTwo</option>
+                        <option value="Provincia3">ProvinciaThree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Comuna</label>
+                    <select class="custom-select">
+                        <option selected="">Seleccione comuna</option>
+                        <option value="Comuna1">ComunaOne</option>
+                        <option value="Comuna2">ComunaTwo</option>
+                        <option value="Comuna3">ComunaThree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Dirección</label>
+                    <input class="form-control" id="direccion" placeholder="Dirección" style="width:100%">
+                </div>
+            </td>
+        </tr>
+        <td></td>
+
+        <td><button type="submit"  class="btn btn-primary" style="width:150px; float:right">GUARDAR</button>    </td>
+
+    </table>
+
 <div class="col-md-6">
-    <div class="row form-group">
-        <label class="col-md-3 col-form-label">RUT:</label>
-            <input type="text" class="form-control col-md-5" maxlength="8"name="rut">  -
-            <input type="text" class="form-control col-md-1" maxlength="1">
-            <span class="toolTip errorInput">Este campo es obligatorio.</span>
-    </div>
-
-  
-    <div class="row form-group">
-        <label class="col-md-3 col-form-label">EMAIL:</label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" name="correo"/>
-        </div>
-    </div>
-
-    <div class="row form-group">
-        <label class="col-md-3 col-form-label">CONTRASEÑA:</label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" name="pass"/>
-        </div>
-    </div>
-    <div class="row form-group">
-        <button type="submit" class="col-md-3 btn btn-primary">GUARDAR</button>
-    </div>
+    
 </div>
     </form>
-<div class="col-md-6">
 
-
-
-</div>
     
