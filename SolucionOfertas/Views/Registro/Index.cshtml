@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Registro";
+}
+
+<h2>Registro</h2>
+<hr />
+<form method="post" action="@Url.Action("Registro", "Registro")">
+<div class="col-md-6">
+    <div class="row form-group">
+        <label class="col-md-3 col-form-label">RUT:</label>
+            <input type="text" class="form-control col-md-5" maxlength="8"name="rut">  -
+            <input type="text" class="form-control col-md-1" maxlength="1">
+            <span class="toolTip errorInput">Este campo es obligatorio.</span>
+    </div>
+
+  
+    <div class="row form-group">
+        <label class="col-md-3 col-form-label">EMAIL:</label>
+        <div class="col-md-9">
+            <input type="text" class="form-control" name="correo"/>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <label class="col-md-3 col-form-label">CONTRASEÑA:</label>
+        <div class="col-md-9">
+            <input type="text" class="form-control" name="pass"/>
+        </div>
+    </div>
+    <div class="row form-group">
+        <button type="submit" class="col-md-3 btn btn-primary">GUARDAR</button>
+    </div>
+</div>
+    </form>
+<div class="col-md-6">
+
+
+
+</div>
+    

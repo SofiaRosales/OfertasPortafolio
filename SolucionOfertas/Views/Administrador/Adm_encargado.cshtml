@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Administrar encargados de tienda";
+    Layout = "~/Views/Shared_adm/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<h2>Administrar encargado de tienda</h2>
+
+@Html.ActionLink("Agregar encargado de tienda", "ADD_encargado", "Administrador")
+
+<br />
+<br />
+
+<div>
+
+    <center>
+
+        <table style="width:100%">
+            <tr class="table-active">
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>RUT</th>
+                <th>Comuna</th>
+                <th>Dirección</th>
+                <th>Acción</th>
+            </tr class="table-active">
+            <tr>
+                <td>Jill</td>
+                <td>Smith</td>
+                <td>50</td>
+                <td>Smith</td>
+                <td>50</td>
+                <td>Jill</td>
+                <td>@Html.ActionLink("Modificar", "UP_encargado", "Administrador") | <a href="url">Eliminar</a></i></td>
+            </tr>
+            
+        </table> 
+
+    </center>
+
+</div>

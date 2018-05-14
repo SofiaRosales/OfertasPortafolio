@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<h2>Administrador</h2>
+<br />
+
+@*
+    Navegar link
+    @Html.ActionLink("adm","Administrar_empresas","Administrador")
+*@
+
+<div >
+     
+    <center>
+        <button type="button" class="btn btn-primary" style="width:350px" onclick="location.href='@Url.Action("Adm_empresas","Administrador")'">Administrar empresas                </button><br /><br />
+        <button type="button" class="btn btn-primary" style="width:350px" onclick="location.href='@Url.Action("Adm_encargado","Administrador")'">Administrar encargados de empresa   </button><br /><br />
+        <button type="button" class="btn btn-primary" style="width:350px" onclick="location.href='@Url.Action("Administrar_empresas","Administrador")'">Archivos BI                         </button><br /><br />
+    </center>
+        
+</div>
+ 
+
