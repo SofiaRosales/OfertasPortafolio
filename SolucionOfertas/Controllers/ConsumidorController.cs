@@ -8,7 +8,7 @@ namespace LoginOfertas3.Controllers
 {
     public class ConsumidorController : Controller
     {
-        // GET: Consumidor
+        // GET: Consumidor :
         public ActionResult Index()
         {
             return View();
