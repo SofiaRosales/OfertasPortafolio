@@ -15,6 +15,7 @@ namespace SolucionOfertas.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Agregar aquí notificaciones personalizadas de usuario
             return userIdentity;
+
         }
     }
 
