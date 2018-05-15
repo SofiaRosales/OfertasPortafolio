@@ -33,6 +33,8 @@ namespace SolucionOfertas.Models
         public virtual DbSet<PERSONA> PERSONA { get; set; }
         public virtual DbSet<PROVINCIA> PROVINCIA { get; set; }
         public virtual DbSet<REGION> REGION { get; set; }
+        public virtual DbSet<CATEGORIA> CATEGORIA { get; set; }
+        public virtual DbSet<SUBCATE> SUBCATE { get; set; }
     
         public virtual int COMUNA_PROCEDURE(string nOMBRE_COMUNA, string iD_PROVINCIA)
         {
