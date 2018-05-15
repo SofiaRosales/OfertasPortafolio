@@ -190,7 +190,7 @@
         <Function Name="PERSONA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="PERSONA_EMAIL" Type="varchar2" Mode="In" />
           <Parameter Name="PERSONA_RUT" Type="varchar2" Mode="In" />
-          <Parameter Name="PERSONA_CONTRASENA" Type="varchar2" Mode="In" />
+          <Parameter Name="PERSONA_CONTRASENA" Type="nclob" Mode="In" />
         </Function>
         <Function Name="PROVINCIA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="NOMBRE_PROVINCIA" Type="varchar2" Mode="In" />
