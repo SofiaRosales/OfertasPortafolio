@@ -20,16 +20,6 @@
           <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar2" MaxLength="40" Nullable="false" />
         </EntityType>
-        <EntityType Name="DIRECCION">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="COMUNA_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="CALLE" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="NRO_CASA" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="DEPTO" Type="varchar2" MaxLength="10" />
-        </EntityType>
         <EntityType Name="PERFIL">
           <Key>
             <PropertyRef Name="ID" />
@@ -61,7 +51,13 @@
           <Property Name="LockoutEnabled" Type="number" Precision="1" Scale="0" Nullable="false" />
           <Property Name="AccessFailedCount" Type="number" Precision="10" Scale="0" Nullable="false" />
           <Property Name="RUT" Type="nvarchar2" MaxLength="256" Nullable="false" />
-          <Property Name="DIRECCION_ID" Type="number" Precision="38" Scale="0" />
+          <Property Name="DV" Type="varchar2" MaxLength="1" />
+          <Property Name="NOMBRE" Type="nvarchar2" MaxLength="20" />
+          <Property Name="APELLIDO" Type="varchar2" MaxLength="40" />
+          <Property Name="CALLE" Type="nvarchar2" MaxLength="60" />
+          <Property Name="NRO" Type="number" Precision="10" Scale="0" />
+          <Property Name="DEPTO" Type="number" Precision="10" Scale="0" />
+          <Property Name="COMUNA_ID" Type="number" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="PROVINCIA">
           <Key>
@@ -110,18 +106,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="DIRECCION_COMUNA_FK">
-          <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="1" />
-          <End Role="DIRECCION" Type="Self.DIRECCION" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="COMUNA">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DIRECCION">
-              <PropertyRef Name="COMUNA_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PERFIL_PERSONA_ID_PERFIL">
           <End Role="PERFIL" Type="Self.PERFIL" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -150,15 +134,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PERSONA_DIRECCION_FK">
-          <End Role="DIRECCION" Type="Self.DIRECCION" Multiplicity="0..1" />
+        <Association Name="PERSONA_COMUNA_FK">
+          <End Role="COMUNA" Type="Self.COMUNA" Multiplicity="0..1" />
           <End Role="PERSONA" Type="Self.PERSONA" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DIRECCION">
+            <Principal Role="COMUNA">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="PERSONA">
-              <PropertyRef Name="DIRECCION_ID" />
+              <PropertyRef Name="COMUNA_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -178,12 +162,6 @@
           <Parameter Name="NOMBRE_COMUNA" Type="varchar2" Mode="In" />
           <Parameter Name="ID_PROVINCIA" Type="varchar2" Mode="In" />
         </Function>
-        <Function Name="DIRECCION_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
-          <Parameter Name="CALLE_DIRECCION" Type="varchar2" Mode="In" />
-          <Parameter Name="NRO_DIRECCION" Type="number" Mode="In" />
-          <Parameter Name="DEPTO_DIRECCION" Type="varchar2" Mode="In" />
-          <Parameter Name="COMUNA_ID" Type="varchar2" Mode="In" />
-        </Function>
         <Function Name="PERFIL_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="PERFIL_NOMBRE" Type="varchar2" Mode="In" />
         </Function>
@@ -191,6 +169,13 @@
           <Parameter Name="PERSONA_EMAIL" Type="varchar2" Mode="In" />
           <Parameter Name="PERSONA_RUT" Type="varchar2" Mode="In" />
           <Parameter Name="PERSONA_CONTRASENA" Type="nclob" Mode="In" />
+          <Parameter Name="PERSONA_DV" Type="varchar2" Mode="In" />
+          <Parameter Name="PERSONA_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="PERSONA_APELLIDO" Type="varchar2" Mode="In" />
+          <Parameter Name="PERSONA_CALLE" Type="varchar2" Mode="In" />
+          <Parameter Name="PERSONA_NRO" Type="number" Mode="In" />
+          <Parameter Name="PERSONA_DEPTO" Type="varchar2" Mode="In" />
+          <Parameter Name="PERSONA_COMUNA" Type="varchar2" Mode="In" />
         </Function>
         <Function Name="PROVINCIA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="NOMBRE_PROVINCIA" Type="varchar2" Mode="In" />
@@ -202,7 +187,6 @@
         <EntityContainer Name="ModelOfertasStoreContainer">
           <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="COMUNA" EntityType="Self.COMUNA" Schema="DBOFERTAS" store:Type="Tables" />
-          <EntitySet Name="DIRECCION" EntityType="Self.DIRECCION" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="PERFIL" EntityType="Self.PERFIL" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="PERFIL_PERSONA" EntityType="Self.PERFIL_PERSONA" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="PERSONA" EntityType="Self.PERSONA" Schema="DBOFERTAS" store:Type="Tables" />
@@ -217,10 +201,6 @@
             <End Role="PROVINCIA" EntitySet="PROVINCIA" />
             <End Role="COMUNA" EntitySet="COMUNA" />
           </AssociationSet>
-          <AssociationSet Name="DIRECCION_COMUNA_FK" Association="Self.DIRECCION_COMUNA_FK">
-            <End Role="COMUNA" EntitySet="COMUNA" />
-            <End Role="DIRECCION" EntitySet="DIRECCION" />
-          </AssociationSet>
           <AssociationSet Name="FK_PERFIL_PERSONA_ID_PERFIL" Association="Self.FK_PERFIL_PERSONA_ID_PERFIL">
             <End Role="PERFIL" EntitySet="PERFIL" />
             <End Role="PERFIL_PERSONA" EntitySet="PERFIL_PERSONA" />
@@ -229,8 +209,8 @@
             <End Role="PERSONA" EntitySet="PERSONA" />
             <End Role="PERFIL_PERSONA" EntitySet="PERFIL_PERSONA" />
           </AssociationSet>
-          <AssociationSet Name="PERSONA_DIRECCION_FK" Association="Self.PERSONA_DIRECCION_FK">
-            <End Role="DIRECCION" EntitySet="DIRECCION" />
+          <AssociationSet Name="PERSONA_COMUNA_FK" Association="Self.PERSONA_COMUNA_FK">
+            <End Role="COMUNA" EntitySet="COMUNA" />
             <End Role="PERSONA" EntitySet="PERSONA" />
           </AssociationSet>
           <AssociationSet Name="PROVINCIA_REGION_FK" Association="Self.PROVINCIA_REGION_FK">
@@ -251,6 +231,7 @@
           <Property Name="NOMBRE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="PROVINCIA" Relationship="Self.COMUNA_PROVINCIA_FK" FromRole="COMUNA" ToRole="PROVINCIA" />
           <NavigationProperty Name="DIRECCION" Relationship="Self.DIRECCION_COMUNA_FK" FromRole="COMUNA" ToRole="DIRECCION" />
+          <NavigationProperty Name="PERSONA" Relationship="ModelOfertas.PERSONA_COMUNA_FK" FromRole="COMUNA" ToRole="PERSONA" />
         </EntityType>
         <EntityType Name="DIRECCION">
           <Key>
@@ -291,6 +272,14 @@
           <NavigationProperty Name="PERFIL" Relationship="Self.PERFIL_PERSONA" FromRole="PERSONA" ToRole="PERFIL" />
           <Property Name="DIRECCION_ID" Type="Decimal" Precision="38" Scale="0" />
           <NavigationProperty Name="DIRECCION" Relationship="ModelOfertas.PERSONA_DIRECCION_FK" FromRole="PERSONA" ToRole="DIRECCION" />
+          <Property Name="DV" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="APELLIDO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="CALLE" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="NRO" Type="Int32" />
+          <Property Name="DEPTO" Type="Int32" />
+          <Property Name="COMUNA_ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="COMUNA" Relationship="ModelOfertas.PERSONA_COMUNA_FK" FromRole="PERSONA" ToRole="COMUNA" />
         </EntityType>
         <EntityType Name="PROVINCIA">
           <Key>
@@ -401,12 +390,23 @@
             <Parameter Name="PERSONA_EMAIL" Mode="In" Type="String" />
             <Parameter Name="PERSONA_RUT" Mode="In" Type="String" />
             <Parameter Name="PERSONA_CONTRASENA" Mode="In" Type="String" />
+            <Parameter Name="PERSONA_DV" Mode="In" Type="String" />
+            <Parameter Name="PERSONA_NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="PERSONA_APELLIDO" Mode="In" Type="String" />
+            <Parameter Name="PERSONA_CALLE" Mode="In" Type="String" />
+            <Parameter Name="PERSONA_NRO" Mode="In" Type="Decimal" />
+            <Parameter Name="PERSONA_DEPTO" Mode="In" Type="String" />
+            <Parameter Name="PERSONA_COMUNA" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="CATEGORIA" EntityType="ModelOfertas.CATEGORIA" />
           <EntitySet Name="SUBCATE" EntityType="ModelOfertas.SUBCATE" />
           <AssociationSet Name="CATEGORIA_SUBCATE_FK" Association="ModelOfertas.CATEGORIA_SUBCATE_FK">
             <End Role="CATEGORIA" EntitySet="CATEGORIA" />
             <End Role="SUBCATE" EntitySet="SUBCATE" />
+          </AssociationSet>
+          <AssociationSet Name="PERSONA_COMUNA_FK" Association="ModelOfertas.PERSONA_COMUNA_FK">
+            <End Role="COMUNA" EntitySet="COMUNA" />
+            <End Role="PERSONA" EntitySet="PERSONA" />
           </AssociationSet>
         </EntityContainer>
         <Association Name="PERSONA_DIRECCION_FK">
@@ -450,6 +450,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="PERSONA_COMUNA_FK">
+          <End Type="ModelOfertas.COMUNA" Role="COMUNA" Multiplicity="0..1" />
+          <End Type="ModelOfertas.PERSONA" Role="PERSONA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMUNA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PERSONA">
+              <PropertyRef Name="COMUNA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -465,17 +477,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DIRECCION">
-            <EntityTypeMapping TypeName="ModelOfertas.DIRECCION">
-              <MappingFragment StoreEntitySet="DIRECCION">
-                <ScalarProperty Name="COMUNA_ID" ColumnName="COMUNA_ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="CALLE" ColumnName="CALLE" />
-                <ScalarProperty Name="NRO_CASA" ColumnName="NRO_CASA" />
-                <ScalarProperty Name="DEPTO" ColumnName="DEPTO" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PERFIL">
             <EntityTypeMapping TypeName="ModelOfertas.PERFIL">
               <MappingFragment StoreEntitySet="PERFIL">
@@ -487,7 +488,13 @@
           <EntitySetMapping Name="PERSONA">
             <EntityTypeMapping TypeName="ModelOfertas.PERSONA">
               <MappingFragment StoreEntitySet="PERSONA">
-                <ScalarProperty Name="DIRECCION_ID" ColumnName="DIRECCION_ID" />
+                <ScalarProperty Name="COMUNA_ID" ColumnName="COMUNA_ID" />
+                <ScalarProperty Name="DEPTO" ColumnName="DEPTO" />
+                <ScalarProperty Name="NRO" ColumnName="NRO" />
+                <ScalarProperty Name="CALLE" ColumnName="CALLE" />
+                <ScalarProperty Name="APELLIDO" ColumnName="APELLIDO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="DV" ColumnName="DV" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
                 <ScalarProperty Name="EMAIL_CONFIRMADO" ColumnName="EMAIL_CONFIRMADO" />
@@ -529,7 +536,6 @@
             </EndProperty>
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="COMUNA_PROCEDURE" FunctionName="ModelOfertas.Store.COMUNA_PROCEDURE" />
-          <FunctionImportMapping FunctionImportName="DIRECCION_PROCEDURE" FunctionName="ModelOfertas.Store.DIRECCION_PROCEDURE" />
           <FunctionImportMapping FunctionImportName="PERFIL_PROCEDURE" FunctionName="ModelOfertas.Store.PERFIL_PROCEDURE" />
           <FunctionImportMapping FunctionImportName="PROVINCIA_PROCEDURE" FunctionName="ModelOfertas.Store.PROVINCIA_PROCEDURE" />
           <FunctionImportMapping FunctionImportName="REGION_PROCEDURE" FunctionName="ModelOfertas.Store.REGION_PROCEDURE" />
