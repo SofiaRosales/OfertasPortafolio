@@ -19,6 +19,7 @@
         <EntityTypeShape EntityType="ModelOfertas.CATEGORIA" Width="1.5" PointX="3.5" PointY="3.625" />
         <EntityTypeShape EntityType="ModelOfertas.SUBCATE" Width="1.5" PointX="0.875" PointY="3.25" />
         <AssociationConnector Association="ModelOfertas.CATEGORIA_SUBCATE_FK" />
+        <AssociationConnector Association="ModelOfertas.PERSONA_COMUNA_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
