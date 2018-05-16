@@ -27,14 +27,16 @@ namespace SolucionOfertas.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<CATEGORIA> CATEGORIA { get; set; }
         public virtual DbSet<COMUNA> COMUNA { get; set; }
-        public virtual DbSet<DIRECCION> DIRECCION { get; set; }
+        public virtual DbSet<OFERTA> OFERTA { get; set; }
         public virtual DbSet<PERFIL> PERFIL { get; set; }
         public virtual DbSet<PERSONA> PERSONA { get; set; }
+        public virtual DbSet<PRODUCTO> PRODUCTO { get; set; }
         public virtual DbSet<PROVINCIA> PROVINCIA { get; set; }
         public virtual DbSet<REGION> REGION { get; set; }
-        public virtual DbSet<CATEGORIA> CATEGORIA { get; set; }
         public virtual DbSet<SUBCATE> SUBCATE { get; set; }
+        public virtual DbSet<TIENDA> TIENDA { get; set; }
     
         public virtual int COMUNA_PROCEDURE(string nOMBRE_COMUNA, string iD_PROVINCIA)
         {
@@ -101,7 +103,7 @@ namespace SolucionOfertas.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("REGION_PROCEDURE", nOMBRE_REGIONParameter);
         }
     
-        public virtual int PERSONA_PROCEDURE(string pERSONA_EMAIL, string pERSONA_RUT, string pERSONA_CONTRASENA)
+        public virtual int PERSONA_PROCEDURE(string pERSONA_EMAIL, string pERSONA_RUT, string pERSONA_CONTRASENA, string pERSONA_DV, string pERSONA_NOMBRE, string pERSONA_APELLIDO, string pERSONA_COMUNA)
         {
             var pERSONA_EMAILParameter = pERSONA_EMAIL != null ?
                 new ObjectParameter("PERSONA_EMAIL", pERSONA_EMAIL) :
@@ -115,7 +117,23 @@ namespace SolucionOfertas.Models
                 new ObjectParameter("PERSONA_CONTRASENA", pERSONA_CONTRASENA) :
                 new ObjectParameter("PERSONA_CONTRASENA", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PERSONA_PROCEDURE", pERSONA_EMAILParameter, pERSONA_RUTParameter, pERSONA_CONTRASENAParameter);
+            var pERSONA_DVParameter = pERSONA_DV != null ?
+                new ObjectParameter("PERSONA_DV", pERSONA_DV) :
+                new ObjectParameter("PERSONA_DV", typeof(string));
+    
+            var pERSONA_NOMBREParameter = pERSONA_NOMBRE != null ?
+                new ObjectParameter("PERSONA_NOMBRE", pERSONA_NOMBRE) :
+                new ObjectParameter("PERSONA_NOMBRE", typeof(string));
+    
+            var pERSONA_APELLIDOParameter = pERSONA_APELLIDO != null ?
+                new ObjectParameter("PERSONA_APELLIDO", pERSONA_APELLIDO) :
+                new ObjectParameter("PERSONA_APELLIDO", typeof(string));
+    
+            var pERSONA_COMUNAParameter = pERSONA_COMUNA != null ?
+                new ObjectParameter("PERSONA_COMUNA", pERSONA_COMUNA) :
+                new ObjectParameter("PERSONA_COMUNA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PERSONA_PROCEDURE", pERSONA_EMAILParameter, pERSONA_RUTParameter, pERSONA_CONTRASENAParameter, pERSONA_DVParameter, pERSONA_NOMBREParameter, pERSONA_APELLIDOParameter, pERSONA_COMUNAParameter);
         }
     }
 }

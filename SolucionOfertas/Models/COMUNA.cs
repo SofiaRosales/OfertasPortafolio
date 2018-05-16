@@ -17,7 +17,8 @@ namespace SolucionOfertas.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public COMUNA()
         {
-            this.DIRECCION = new HashSet<DIRECCION>();
+            this.PERSONA = new HashSet<PERSONA>();
+            this.TIENDA = new HashSet<TIENDA>();
         }
     
         public decimal PROVINCIA_ID { get; set; }
@@ -26,6 +27,8 @@ namespace SolucionOfertas.Models
     
         public virtual PROVINCIA PROVINCIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DIRECCION> DIRECCION { get; set; }
+        public virtual ICollection<PERSONA> PERSONA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TIENDA> TIENDA { get; set; }
     }
 }
