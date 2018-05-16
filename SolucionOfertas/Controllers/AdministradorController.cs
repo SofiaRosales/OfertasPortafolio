@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SolucionOfertas.Models;
+using Microsoft.AspNet.Identity;
 
 namespace LoginOfertas3.Controllers
 {
     public class AdministradorController : Controller
     {
+        private EntitiesOfertas datos = new EntitiesOfertas();
         // GET: Administrador
         public ActionResult Index()
         {
@@ -20,8 +23,14 @@ namespace LoginOfertas3.Controllers
         {
             return View();
         }
-        public ActionResult ADD_empresa()
+        public ActionResult ADD_empresa(string nombre,string rut,REGION region, PROVINCIA provincia,COMUNA comuna,string direccion)
         {
+            if (ModelState.IsValid)
+            {
+
+                //datos.EMPRESA_PROCEDURE(nombre,rut,region,provincia,comuna,direccion);
+
+            }
             return View();
         }
         public ActionResult UP_empresa()
@@ -42,8 +51,14 @@ namespace LoginOfertas3.Controllers
         {
             return View();
         }
-        public ActionResult ADD_encargado()
+        public ActionResult ADD_encargado(string nombre, string apellidos,string rut,REGION region ,PROVINCIA provincia,COMUNA comuna, string direccion)
         {
+            if (ModelState.IsValid)
+            {
+
+                //datos.ENCARGADO_PROCEDURE(nombre, apellidos, rut, region, provincia, comuna, direccion);
+                                
+            }
             return View();
         }
     }

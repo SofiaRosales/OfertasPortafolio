@@ -180,7 +180,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\ConsumidorController.cs" />
-    <Compile Include="Controllers\Enc_TiendaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RegistroController.cs" />
@@ -326,10 +325,6 @@
     <Content Include="Views\Shared_adm\_Layout.cshtml" />
     <Content Include="Views\Shared_adm\_LoginPartial.cshtml" />
     <Content Include="Views\Registro\Index.cshtml" />
-    <Content Include="Views\Registro\Index - Copia.cshtml" />
-    <Content Include="Views\Enc_tienda\Index.cshtml" />
-    <Content Include="Views\Enc_tienda\ADD_producto.cshtml" />
-    <Content Include="Views\Enc_tienda\Adm_producto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
