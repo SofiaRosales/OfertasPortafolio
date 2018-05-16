@@ -4,21 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6491c4862cc546988d1eb74e37948a43" Name="Diagram1">
-        <EntityTypeShape EntityType="ModelOfertas.COMUNA" Width="1.5" PointX="7.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModelOfertas.DIRECCION" Width="1.5" PointX="9.5" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModelOfertas.PERFIL" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModelOfertas.PERSONA" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModelOfertas.PROVINCIA" Width="1.5" PointX="5" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="ModelOfertas.REGION" Width="1.5" PointX="2.75" PointY="1.875" IsExpanded="true" />
-        <AssociationConnector Association="ModelOfertas.COMUNA_PROVINCIA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="ModelOfertas.DIRECCION_COMUNA_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="ModelOfertas.PROVINCIA_REGION_FK" ManuallyRouted="false" />
-        <AssociationConnector Association="ModelOfertas.PERFIL_PERSONA" ManuallyRouted="false" />
-        <AssociationConnector Association="ModelOfertas.PERSONA_DIRECCION_FK" />
-        <EntityTypeShape EntityType="ModelOfertas.CATEGORIA" Width="1.5" PointX="3.5" PointY="3.625" />
-        <EntityTypeShape EntityType="ModelOfertas.SUBCATE" Width="1.5" PointX="0.875" PointY="3.25" />
+      <Diagram DiagramId="6491c4862cc546988d1eb74e37948a43" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="ModelOfertas.CATEGORIA" Width="1.875" PointX="12.5" PointY="2.375" />
+        <EntityTypeShape EntityType="ModelOfertas.COMUNA" Width="1.5" PointX="5.875" PointY="11" />
+        <EntityTypeShape EntityType="ModelOfertas.OFERTA" Width="1.5" PointX="9.625" PointY="3.875" />
+        <EntityTypeShape EntityType="ModelOfertas.PERFIL" Width="1.5" PointX="5.875" PointY="20.25" />
+        <EntityTypeShape EntityType="ModelOfertas.PERSONA" Width="1.5" PointX="8.125" PointY="10.875" />
+        <EntityTypeShape EntityType="ModelOfertas.PRODUCTO" Width="1.5" PointX="7.375" PointY="3.625" />
+        <EntityTypeShape EntityType="ModelOfertas.PROVINCIA" Width="1.5" PointX="5.875" PointY="14.125" />
+        <EntityTypeShape EntityType="ModelOfertas.REGION" Width="1.5" PointX="5.875" PointY="17.25" />
+        <EntityTypeShape EntityType="ModelOfertas.SUBCATE" Width="1.5" PointX="13.875" PointY="4.375" />
+        <EntityTypeShape EntityType="ModelOfertas.TIENDA" Width="1.5" PointX="5.125" PointY="1" />
         <AssociationConnector Association="ModelOfertas.CATEGORIA_SUBCATE_FK" />
+        <AssociationConnector Association="ModelOfertas.PRODUCTO_CATEGORIA_FK" />
+        <AssociationConnector Association="ModelOfertas.COMUNA_PROVINCIA_FK" />
+        <AssociationConnector Association="ModelOfertas.PERSONA_COMUNA_FK" />
+        <AssociationConnector Association="ModelOfertas.TIENDA_COMUNA_FK" />
+        <AssociationConnector Association="ModelOfertas.OFERTA_PRODUCTO_FK" />
+        <AssociationConnector Association="ModelOfertas.PRODUCTO_TIENDA_FK" />
+        <AssociationConnector Association="ModelOfertas.PROVINCIA_REGION_FK" />
+        <AssociationConnector Association="ModelOfertas.PERFIL_PERSONA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -151,7 +151,6 @@ namespace SolucionOfertas.Controllers
         {
             if (ModelState.IsValid)
             {
-                //CAMBIAR
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -164,7 +163,7 @@ namespace SolucionOfertas.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
 
-                    return RedirectToAction("Index", "Registro");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }

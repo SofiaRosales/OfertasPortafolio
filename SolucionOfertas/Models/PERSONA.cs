@@ -32,10 +32,13 @@ namespace SolucionOfertas.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
         public string RUT { get; set; }
-        public Nullable<decimal> DIRECCION_ID { get; set; }
+        public string DV { get; set; }
+        public string NOMBRE { get; set; }
+        public string APELLIDO { get; set; }
+        public Nullable<decimal> COMUNA_ID { get; set; }
     
+        public virtual COMUNA COMUNA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PERFIL> PERFIL { get; set; }
-        public virtual DIRECCION DIRECCION { get; set; }
     }
 }

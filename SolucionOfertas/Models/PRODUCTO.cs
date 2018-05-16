@@ -12,22 +12,25 @@ namespace SolucionOfertas.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DIRECCION
+    public partial class PRODUCTO
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DIRECCION()
+        public PRODUCTO()
         {
-            this.PERSONA = new HashSet<PERSONA>();
+            this.OFERTA = new HashSet<OFERTA>();
         }
     
-        public decimal COMUNA_ID { get; set; }
+        public decimal CATEGORIA_ID { get; set; }
+        public decimal TIENDA_ID { get; set; }
         public decimal ID { get; set; }
-        public string CALLE { get; set; }
-        public decimal NRO_CASA { get; set; }
-        public string DEPTO { get; set; }
+        public string NOMBRE { get; set; }
+        public string DESCRIPCION { get; set; }
+        public decimal PRECIO { get; set; }
+        public string IMAGEN { get; set; }
     
-        public virtual COMUNA COMUNA { get; set; }
+        public virtual CATEGORIA CATEGORIA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PERSONA> PERSONA { get; set; }
+        public virtual ICollection<OFERTA> OFERTA { get; set; }
+        public virtual TIENDA TIENDA { get; set; }
     }
 }
