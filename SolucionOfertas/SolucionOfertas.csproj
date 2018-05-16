@@ -324,6 +324,7 @@
     <Content Include="Views\Enc_tienda\Index.cshtml" />
     <Content Include="Views\Enc_tienda\ADD_producto.cshtml" />
     <Content Include="Views\Enc_tienda\Adm_producto.cshtml" />
+    <Content Include="Views\Enc_tienda\ADD_oferta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

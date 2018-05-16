@@ -9,10 +9,8 @@
 
     <form>
         <fieldset>
-            <legend>Agregar Producto</legend>
+            <legend>Agregar oferta</legend>
             
-
-
                 <table style="width:80%">
                     <tr>
                         <td>
@@ -33,11 +31,18 @@
                         <td>
                                 <div class="form-group">
                                     <label>Categoría</label>
-                                    @Html.DropDownList("categoriaList1", ViewBag.categoriaListName as SelectList, "Seleccione categoria")
+                                    <select class="custom-select"   name="categorias">                             
+                                    </select>
                                 </div>
                             <div class="form-group">
                                 <label>Sub categoría</label>
-                                    @Html.DropDownList("subCategoriaList1", ViewBag.SubCategoriaListName as SelectList, "Seleccione sub categoria")
+                                <select class="custom-select">
+                                    <option selected="">Seleccione sub categoría</option>
+                                    <option value="categoria1">categoria1</option>
+                                    <option value="categoria2">categoria2</option>
+                                    <option value="categoria3">categoria3</option>
+                                </select>
+                            </div>
 
                                 <div class="form-group">
                                         <label>Imagen</label>
