@@ -3866,9 +3866,9 @@ input[type="button"].btn-block {
      -moz-appearance: none;
           appearance: none;
 }
-#categoriaProducto, #subCategoriaProducto{
+#categoriaProducto, #subCategoriaProducto, #categoriaOferta, #subCategoriaOferta {
   display: block;
-  width: 100%;
+  width: 80%;
   height: calc(2.25rem + 2px);
   padding: 0.375rem 1.75rem 0.375rem 0.75rem;
   line-height: 1.5;
