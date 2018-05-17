@@ -135,5 +135,85 @@ namespace SolucionOfertas.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PERSONA_PROCEDURE", pERSONA_EMAILParameter, pERSONA_RUTParameter, pERSONA_CONTRASENAParameter, pERSONA_DVParameter, pERSONA_NOMBREParameter, pERSONA_APELLIDOParameter, pERSONA_COMUNAParameter);
         }
+    
+        public virtual int ADD_PRODUCTO_PROCEDURE(string nOMBRE_PRODUCTO, Nullable<decimal> cATEGORIA_PRODUCTO, Nullable<decimal> tIENDA_PRODUCTO, string dESC_PRODUCTO, Nullable<decimal> pRECIO_PRODUCTO, string iMAGEN_PRODUCTO)
+        {
+            var nOMBRE_PRODUCTOParameter = nOMBRE_PRODUCTO != null ?
+                new ObjectParameter("NOMBRE_PRODUCTO", nOMBRE_PRODUCTO) :
+                new ObjectParameter("NOMBRE_PRODUCTO", typeof(string));
+    
+            var cATEGORIA_PRODUCTOParameter = cATEGORIA_PRODUCTO.HasValue ?
+                new ObjectParameter("CATEGORIA_PRODUCTO", cATEGORIA_PRODUCTO) :
+                new ObjectParameter("CATEGORIA_PRODUCTO", typeof(decimal));
+    
+            var tIENDA_PRODUCTOParameter = tIENDA_PRODUCTO.HasValue ?
+                new ObjectParameter("TIENDA_PRODUCTO", tIENDA_PRODUCTO) :
+                new ObjectParameter("TIENDA_PRODUCTO", typeof(decimal));
+    
+            var dESC_PRODUCTOParameter = dESC_PRODUCTO != null ?
+                new ObjectParameter("DESC_PRODUCTO", dESC_PRODUCTO) :
+                new ObjectParameter("DESC_PRODUCTO", typeof(string));
+    
+            var pRECIO_PRODUCTOParameter = pRECIO_PRODUCTO.HasValue ?
+                new ObjectParameter("PRECIO_PRODUCTO", pRECIO_PRODUCTO) :
+                new ObjectParameter("PRECIO_PRODUCTO", typeof(decimal));
+    
+            var iMAGEN_PRODUCTOParameter = iMAGEN_PRODUCTO != null ?
+                new ObjectParameter("IMAGEN_PRODUCTO", iMAGEN_PRODUCTO) :
+                new ObjectParameter("IMAGEN_PRODUCTO", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_PRODUCTO_PROCEDURE", nOMBRE_PRODUCTOParameter, cATEGORIA_PRODUCTOParameter, tIENDA_PRODUCTOParameter, dESC_PRODUCTOParameter, pRECIO_PRODUCTOParameter, iMAGEN_PRODUCTOParameter);
+        }
+    
+        public virtual int CATEGORIA_PROCEDURE(string nOMBRE_CATEGORIA)
+        {
+            var nOMBRE_CATEGORIAParameter = nOMBRE_CATEGORIA != null ?
+                new ObjectParameter("NOMBRE_CATEGORIA", nOMBRE_CATEGORIA) :
+                new ObjectParameter("NOMBRE_CATEGORIA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CATEGORIA_PROCEDURE", nOMBRE_CATEGORIAParameter);
+        }
+    
+        public virtual int PERSONA_UPDATE_PROCEDURE(string nOMBRE_PERSONA, string aPELLIDO_PERSONA, string cORREO_PERSONA, string rUT_PERSONA, string iD_DIRECCION, string nUEVA_CALLE)
+        {
+            var nOMBRE_PERSONAParameter = nOMBRE_PERSONA != null ?
+                new ObjectParameter("NOMBRE_PERSONA", nOMBRE_PERSONA) :
+                new ObjectParameter("NOMBRE_PERSONA", typeof(string));
+    
+            var aPELLIDO_PERSONAParameter = aPELLIDO_PERSONA != null ?
+                new ObjectParameter("APELLIDO_PERSONA", aPELLIDO_PERSONA) :
+                new ObjectParameter("APELLIDO_PERSONA", typeof(string));
+    
+            var cORREO_PERSONAParameter = cORREO_PERSONA != null ?
+                new ObjectParameter("CORREO_PERSONA", cORREO_PERSONA) :
+                new ObjectParameter("CORREO_PERSONA", typeof(string));
+    
+            var rUT_PERSONAParameter = rUT_PERSONA != null ?
+                new ObjectParameter("RUT_PERSONA", rUT_PERSONA) :
+                new ObjectParameter("RUT_PERSONA", typeof(string));
+    
+            var iD_DIRECCIONParameter = iD_DIRECCION != null ?
+                new ObjectParameter("ID_DIRECCION", iD_DIRECCION) :
+                new ObjectParameter("ID_DIRECCION", typeof(string));
+    
+            var nUEVA_CALLEParameter = nUEVA_CALLE != null ?
+                new ObjectParameter("NUEVA_CALLE", nUEVA_CALLE) :
+                new ObjectParameter("NUEVA_CALLE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PERSONA_UPDATE_PROCEDURE", nOMBRE_PERSONAParameter, aPELLIDO_PERSONAParameter, cORREO_PERSONAParameter, rUT_PERSONAParameter, iD_DIRECCIONParameter, nUEVA_CALLEParameter);
+        }
+    
+        public virtual int SUBCATE_PROCEDURE(string sUBCATE_NOMBRE, string iD_CATEGORIA)
+        {
+            var sUBCATE_NOMBREParameter = sUBCATE_NOMBRE != null ?
+                new ObjectParameter("SUBCATE_NOMBRE", sUBCATE_NOMBRE) :
+                new ObjectParameter("SUBCATE_NOMBRE", typeof(string));
+    
+            var iD_CATEGORIAParameter = iD_CATEGORIA != null ?
+                new ObjectParameter("ID_CATEGORIA", iD_CATEGORIA) :
+                new ObjectParameter("ID_CATEGORIA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SUBCATE_PROCEDURE", sUBCATE_NOMBREParameter, iD_CATEGORIAParameter);
+        }
     }
 }
