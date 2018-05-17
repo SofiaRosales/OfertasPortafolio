@@ -9,35 +9,48 @@ namespace SolucionOfertas.Controllers
 {
     public class Enc_TiendaController : Controller
     {
+        EntitiesOfertas entityOferta = new EntitiesOfertas();
+
+
         // GET: Enc_Tienda
         public ActionResult Index()
         {
             return View();
         }
 
-
         // Rutas
         public ActionResult Adm_producto()
         {
             return View();
         }
-        public ActionResult ADD_producto()
+        public ActionResult ADD_oferta()
         {
-            EntitiesOfertas entityOferta = new EntitiesOfertas();
+
             var getCategoriasList = entityOferta.CATEGORIA.ToList();
-            SelectList list = new SelectList(getCategoriasList, "ID","NOMBRE");
+            SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
             ViewBag.categoriaListName = list;
-            
+
             var getSubCategoriasList = entityOferta.SUBCATE.ToList();
             SelectList list2 = new SelectList(getSubCategoriasList, "ID", "NOMBRE");
             ViewBag.SubCategoriaListName = list2;
 
             return View();
         }
-        public ActionResult ADD_oferta()
+        public ActionResult ADD_producto()
         {
+            
+
+            var getCategoriasList = entityOferta.CATEGORIA.ToList();
+            SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
+            ViewBag.categoriaListName = list;
+
+            var getSubCategoriasList = entityOferta.SUBCATE.ToList();
+            SelectList list2 = new SelectList(getSubCategoriasList, "ID", "NOMBRE");
+            ViewBag.SubCategoriaListName = list2;
+
             return View();
         }
+        
 
         // Cargar Select de ADD_producto
         //public JsonResult getcategorias()

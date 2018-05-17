@@ -33,12 +33,12 @@
                         <td>
                                 <div class="form-group">
                                     <label>Categoría</label>
-                                    @Html.DropDownList("categoriaList1", ViewBag.categoriaListName as SelectList, "Seleccione categoria")
+                                    @Html.DropDownList("categoriaProducto", ViewBag.categoriaListName as SelectList, "Seleccione categoria")
                                 </div>
-                            <div class="form-group">
-                                <label>Sub categoría</label>
-                                    @Html.DropDownList("subCategoriaList1", ViewBag.SubCategoriaListName as SelectList, "Seleccione sub categoria")
-
+                                <div class="form-group">
+                                    <label>Sub categoría</label>
+                                    @Html.DropDownList("subCategoriaProducto", ViewBag.SubCategoriaListName as SelectList, "Seleccione sub categoria")
+                                </div>
                                 <div class="form-group">
                                         <label>Imagen</label>
                                         <input class="form-control-file" name="foto_producto" type="file">
@@ -47,7 +47,7 @@
                         
                     </tr>
 
-                    <td><button type="button" class="btn btn-success" style="width:150px" onclick="location.href='@Url.Action("Adm_empresas","Administrador")'">Cancelar</button></td>
+                    <td><button type="button" class="btn btn-success" style="width:150px" onclick="location.href='@Url.Action("Adm_producto","Enc_tienda")'">Cancelar</button></td>
 
                     <td><button type="submit" class="btn btn-primary" style="width:150px; float:right">Agregar</button></td>
                     

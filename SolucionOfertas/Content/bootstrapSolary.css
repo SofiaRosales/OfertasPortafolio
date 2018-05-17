@@ -3866,7 +3866,7 @@ input[type="button"].btn-block {
      -moz-appearance: none;
           appearance: none;
 }
-#categoriaList1, #subCategoriaList1{
+#categoriaProducto, #subCategoriaProducto{
   display: block;
   width: 100%;
   height: calc(2.25rem + 2px);
