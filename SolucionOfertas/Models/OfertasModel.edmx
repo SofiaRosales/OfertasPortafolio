@@ -235,6 +235,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ADD_PRODUCTO_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="NOMBRE_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="CATEGORIA_PRODUCTO" Type="number" Mode="In" />
+          <Parameter Name="TIENDA_PRODUCTO" Type="number" Mode="In" />
+          <Parameter Name="DESC_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="PRECIO_PRODUCTO" Type="number" Mode="In" />
+          <Parameter Name="IMAGEN_PRODUCTO" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="CATEGORIA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="NOMBRE_CATEGORIA" Type="varchar2" Mode="In" />
+        </Function>
         <Function Name="COMUNA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="NOMBRE_COMUNA" Type="varchar2" Mode="In" />
           <Parameter Name="ID_PROVINCIA" Type="varchar2" Mode="In" />
@@ -251,12 +262,24 @@
           <Parameter Name="PERSONA_APELLIDO" Type="varchar2" Mode="In" />
           <Parameter Name="PERSONA_COMUNA" Type="varchar2" Mode="In" />
         </Function>
+        <Function Name="PERSONA_UPDATE_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="NOMBRE_PERSONA" Type="varchar2" Mode="In" />
+          <Parameter Name="APELLIDO_PERSONA" Type="varchar2" Mode="In" />
+          <Parameter Name="CORREO_PERSONA" Type="varchar2" Mode="In" />
+          <Parameter Name="RUT_PERSONA" Type="varchar2" Mode="In" />
+          <Parameter Name="ID_DIRECCION" Type="varchar2" Mode="In" />
+          <Parameter Name="NUEVA_CALLE" Type="varchar2" Mode="In" />
+        </Function>
         <Function Name="PROVINCIA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="NOMBRE_PROVINCIA" Type="varchar2" Mode="In" />
           <Parameter Name="ID_REGION" Type="varchar2" Mode="In" />
         </Function>
         <Function Name="REGION_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="NOMBRE_REGION" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="SUBCATE_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="SUBCATE_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="ID_CATEGORIA" Type="varchar2" Mode="In" />
         </Function>
         <EntityContainer Name="ModelOfertasStoreContainer">
           <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="DBOFERTAS" store:Type="Tables" />
@@ -391,6 +414,29 @@
             <End Role="PERFIL" EntitySet="PERFIL" />
             <End Role="PERSONA" EntitySet="PERSONA" />
           </AssociationSet>
+          <FunctionImport Name="ADD_PRODUCTO_PROCEDURE">
+            <Parameter Name="NOMBRE_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="CATEGORIA_PRODUCTO" Mode="In" Type="Decimal" />
+            <Parameter Name="TIENDA_PRODUCTO" Mode="In" Type="Decimal" />
+            <Parameter Name="DESC_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="PRECIO_PRODUCTO" Mode="In" Type="Decimal" />
+            <Parameter Name="IMAGEN_PRODUCTO" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CATEGORIA_PROCEDURE">
+          <Parameter Name="NOMBRE_CATEGORIA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PERSONA_UPDATE_PROCEDURE">
+            <Parameter Name="NOMBRE_PERSONA" Mode="In" Type="String" />
+            <Parameter Name="APELLIDO_PERSONA" Mode="In" Type="String" />
+            <Parameter Name="CORREO_PERSONA" Mode="In" Type="String" />
+            <Parameter Name="RUT_PERSONA" Mode="In" Type="String" />
+            <Parameter Name="ID_DIRECCION" Mode="In" Type="String" />
+            <Parameter Name="NUEVA_CALLE" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SUBCATE_PROCEDURE">
+            <Parameter Name="SUBCATE_NOMBRE" Mode="In" Type="String" />
+            <Parameter Name="ID_CATEGORIA" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CATEGORIA">
           <Key>
@@ -735,6 +781,10 @@
               <ScalarProperty Name="ID" ColumnName="ID_PERFIL" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="ADD_PRODUCTO_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_PRODUCTO_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="CATEGORIA_PROCEDURE" FunctionName="ModelOfertas.Store.CATEGORIA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="PERSONA_UPDATE_PROCEDURE" FunctionName="ModelOfertas.Store.PERSONA_UPDATE_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="SUBCATE_PROCEDURE" FunctionName="ModelOfertas.Store.SUBCATE_PROCEDURE" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
