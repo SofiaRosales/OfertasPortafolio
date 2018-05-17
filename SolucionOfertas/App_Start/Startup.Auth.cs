@@ -54,9 +54,9 @@ namespace SolucionOfertas
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "497620223915654",
+               appSecret: "a92285357b18d77a26acdff93bb57fa1");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
