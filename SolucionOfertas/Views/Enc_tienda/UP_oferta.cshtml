@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Agregar producto";
+    ViewBag.Title = "Modificar producto";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <br />
@@ -8,9 +8,8 @@
 <br />
 
     <form method="post" action="@Url.Action("Metodo", "Controlador")">
-        
         <fieldset>
-            <legend>Agregar oferta</legend>
+            <legend>Modificar oferta</legend>
             
                 <table style="width:80%">
                     <tr>
@@ -39,18 +38,18 @@
                             </div>
                             <div class="form-group">
                                 <label accesskey="" style="text-align:left">Precio Oferta</label>
-                                <input class="form-control" name="precio_prod" style="width:90%" disabled min="5" max="90">
+                                <input class="form-control" name="precio_oferta" style="width:90%" disabled min="5" max="90">
                             </div>
                             <div class="form-group">
                                 <label>Imagen</label>
-                                <input class="form-control-file" name="foto_prod" type="file">
+                                <input class="form-control-file" name="foto_producto" type="file">
                             </div>
                         </td>   
                     </tr>
 
                     <td><button type="button" class="btn btn-success" style="width:150px" onclick="location.href='@Url.Action("Adm_empresas","Administrador")'">Cancelar</button></td>
 
-                    <td><button type="submit" class="btn btn-primary" style="width:150px; float:right">Agregar</button></td>
+                    <td><button type="submit" class="btn btn-primary" style="width:150px; float:right">Guardar</button></td>
                     
                    
                 </table>

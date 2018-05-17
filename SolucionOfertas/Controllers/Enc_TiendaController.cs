@@ -23,6 +23,10 @@ namespace SolucionOfertas.Controllers
         {
             return View();
         }
+        public ActionResult Adm_oferta()
+        {
+            return View();
+        }
         public ActionResult ADD_oferta()
         {
 
@@ -50,7 +54,30 @@ namespace SolucionOfertas.Controllers
 
             return View();
         }
-        
+        public ActionResult UP_oferta()
+        {
+            var getCategoriasList = entityOferta.CATEGORIA.ToList();
+            SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
+            ViewBag.categoriaListName = list;
+
+            var getSubCategoriasList = entityOferta.SUBCATE.ToList();
+            SelectList list2 = new SelectList(getSubCategoriasList, "ID", "NOMBRE");
+            ViewBag.SubCategoriaListName = list2;
+
+            return View();
+        }
+        public ActionResult UP_producto()
+        {
+            var getCategoriasList = entityOferta.CATEGORIA.ToList();
+            SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
+            ViewBag.categoriaListName = list;
+
+            var getSubCategoriasList = entityOferta.SUBCATE.ToList();
+            SelectList list2 = new SelectList(getSubCategoriasList, "ID", "NOMBRE");
+            ViewBag.SubCategoriaListName = list2;
+
+            return View();
+        }
 
         // Cargar Select de ADD_producto
         //public JsonResult getcategorias()

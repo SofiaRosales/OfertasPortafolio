@@ -332,6 +332,8 @@
     <Content Include="Views\Enc_tienda\Index.cshtml" />
     <Content Include="Views\Registro\Index - Copia.cshtml" />
     <Content Include="Views\Enc_tienda\Adm_producto.cshtml" />
+    <Content Include="Views\Enc_tienda\UP_producto.cshtml" />
+    <Content Include="Views\Enc_tienda\UP_oferta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

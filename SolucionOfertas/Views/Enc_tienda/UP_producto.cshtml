@@ -1,17 +1,18 @@
 ﻿
 @{
-    ViewBag.Title = "Agregar producto";
+    ViewBag.Title = "Modificar producto";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <br />
 <br />
 <br />
 
-    <form method="post" action="@Url.Action("Metodo", "Controlador")">
-
+    <form>
         <fieldset>
-            <legend>Agregar Producto</legend>
+            <legend>Modificar Producto</legend>
             
+
+
                 <table style="width:80%">
                     <tr>
                         <td>
@@ -32,17 +33,15 @@
                         <td>
                                 <div class="form-group">
                                     <label>Categoría</label>
-                                    @* primer campo es name "categoriaOferta" *@
                                     @Html.DropDownList("categoriaProducto", ViewBag.categoriaListName as SelectList, "Seleccione categoria")
                                 </div>
                                 <div class="form-group">
                                     <label>Sub categoría</label>
-                                    @* primer campo es name "categoriaOferta" *@
                                     @Html.DropDownList("subCategoriaProducto", ViewBag.SubCategoriaListName as SelectList, "Seleccione sub categoria")
                                 </div>
                                 <div class="form-group">
                                         <label>Imagen</label>
-                                        <input class="form-control-file" name="foto_prod" type="file">
+                                        <input class="form-control-file" name="foto_producto" type="file">
                                 </div>
                         </td>
                         
@@ -50,7 +49,7 @@
 
                     <td><button type="button" class="btn btn-success" style="width:150px" onclick="location.href='@Url.Action("Adm_producto","Enc_tienda")'">Cancelar</button></td>
 
-                    <td><button type="submit" class="btn btn-primary" style="width:150px; float:right">Agregar</button></td>
+                    <td><button type="submit" class="btn btn-primary" style="width:150px; float:right">Guardar</button></td>
                     
                    
                 </table>

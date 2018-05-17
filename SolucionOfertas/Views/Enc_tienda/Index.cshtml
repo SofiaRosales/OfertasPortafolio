@@ -1,33 +1,33 @@
 ﻿
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
--<br />
--<br />
--<br />
--<br />
+<br />
+<br />
+<br />
+<br />
 
 
--<h2>Encargado de tienda</h2>
--<br />
--
--@*
-    -    Navegar link
-    -    @Html.ActionLink("adm","Administrar_empresas","Administrador")
-    -*@
--
--<div>
-    -
-    -    <center>
-        -        <button type="button" class="btn btn-primary" style="width:350px" onclick="location.href='@Url.Action("Adm_producto","Enc_tienda")'">Administrar Productos           </button><br /><br />
-        -        <button type="button" class="btn btn-primary" style="width:350px" onclick="location.href='@Url.Action("Adm_empresas","Administrador")'">Administrar Ofertas             </button><br /><br />
-        -        <button type="button" class="btn btn-primary" style="width:350px" onclick="location.href='@Url.Action("Adm_encargado","Administrador")'">Valoraciones                   </button><br /><br />
-        -        <button type="button" class="btn btn-primary" style="width:350px" onclick="location.href='@Url.Action("Administrar_empresas","Administrador")'">Validar boletas         </button><br /><br />
-        -
+<h2>Encargado de tienda</h2>
+<br />
+
+@*
+    Navegar link
+    @Html.ActionLink("adm","Administrar_empresas","Administrador")
+*@
+
+<div>
+    
+    <center>
+          <button type="button" class="btn btn-primary" style="width:350px" onclick="location.href='@Url.Action("Adm_producto","Enc_tienda")'">Administrar Productos           </button><br /><br />
+          <button type="button" class="btn btn-primary" style="width:350px" onclick="location.href='@Url.Action("Adm_oferta","Enc_tienda")'">Administrar Ofertas             </button><br /><br />
+          <button type="button" class="btn btn-primary" style="width:350px" onclick="location.href='@Url.Action("Adm_encargado","Administrador")'">Valoraciones                   </button><br /><br />
+          <button type="button" class="btn btn-primary" style="width:350px" onclick="location.href='@Url.Action("Administrar_empresas","Administrador")'">Validar boletas         </button><br /><br />
+        
     </center>
-    -
-    -
+    
+    
 </div>
--
--
+
