@@ -49,6 +49,12 @@ namespace LoginOfertas3.Controllers
         }
         public ActionResult UP_encargado()
         {
+            if (ModelState.IsValid)
+            {
+
+                //datos.ENCARGADO_PROCEDURE(nombre, apellidos, rut, region, provincia, comuna, direccion);
+
+            }
             return View();
         }
         public ActionResult ADD_encargado(string nombre, string apellidos,string rut,REGION region ,PROVINCIA provincia,COMUNA comuna, string direccion)

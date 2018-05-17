@@ -24,14 +24,14 @@ namespace SolucionOfertas.Controllers
         
        [HttpPost]
             
-        public ActionResult Registro(string rut,string correo, string pass)
+        public ActionResult Registro(string rut,string correo, string pass, string dv, string nombre, string apellido, string comuna)
         {
             if (ModelState.IsValid)
             {
                 PasswordHasher a = new PasswordHasher();
                 
 
-                datos.PERSONA_PROCEDURE(correo,rut,a.HashPassword(pass));
+                datos.PERSONA_PROCEDURE(correo,rut,a.HashPassword(pass), dv, nombre, apellido, comuna);
 
                 //ManageController
                 //UserManager.add
