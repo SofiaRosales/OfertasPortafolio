@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Adm_producto";
+    Layout = "~/Views/Shared_adm/_Layout.cshtml";
+}
+
+-<br />
+-<br />
+-<br />
+-<div>
+    -    <h2>Administrar empresas</h2>
+    -    @Html.ActionLink("Agregar empresa", "ADD_empresa", "Administrador")
+    -    <br />
+    -    <br />
+    -
+    -    <center>
+        -
+        -        <table style="width:100%">
+            -
+            <tr class="table-active">
+                -
+                <th>ID</th>
+                -
+                <th>Nombre</th>
+                -
+                <th>RUT</th>
+                -
+                <th>Región</th>
+                -
+                <th>Provincia</th>
+                -
+                <th>Comuna</th>
+                -
+                <th>Dirección</th>
+                -
+                <th>Acción</th>
+                -
+            </tr>
+            -
+            <tr>
+                -
+                <td>Jill</td>
+                -
+                <td>Smith</td>
+                -
+                <td>50</td>
+                -
+                <td>Jill</td>
+                -
+                <td>Smith</td>
+                -
+                <td>50</td>
+                -
+                <td>Jill</td>
+                -
+                <td>@Html.ActionLink("Modificar", "UP_empresa", "Administrador") | @Html.ActionLink("Eliminar", "ADD_empresa", "Administrador")</td>
+                -
+            </tr>
+            -
+            -
+        </table>
+        -
+        -
+    </center>
+    -
+    -
+</div> 
+

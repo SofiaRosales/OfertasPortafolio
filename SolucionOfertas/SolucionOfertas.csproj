@@ -326,12 +326,12 @@
     <Content Include="Views\Shared_adm\_Layout.cshtml" />
     <Content Include="Views\Shared_adm\_LoginPartial.cshtml" />
     <Content Include="Views\Registro\Index.cshtml" />
-    <Content Include="Views\Registro\Index - Copia.cshtml" />
-    <Content Include="Views\Enc_tienda\Index.cshtml" />
     <Content Include="Views\Enc_tienda\ADD_producto.cshtml" />
-    <Content Include="Views\Enc_tienda\Adm_producto.cshtml" />
     <Content Include="Views\Enc_tienda\ADD_oferta.cshtml" />
     <Content Include="Views\Enc_tienda\Adm_oferta.cshtml" />
+    <Content Include="Views\Enc_tienda\Index.cshtml" />
+    <Content Include="Views\Registro\Index - Copia.cshtml" />
+    <Content Include="Views\Enc_tienda\Adm_producto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
