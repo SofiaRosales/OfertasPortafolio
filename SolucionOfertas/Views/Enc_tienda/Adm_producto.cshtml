@@ -1,4 +1,4 @@
-﻿
+﻿@model SolucionOfertas.Models.PRODUCTO
 @{
     ViewBag.Title = "Adm_producto";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -23,41 +23,34 @@
                 
                 <th>Nombre</th>
                 
-                <th>RUT</th>
+                <th>Precio</th>
                 
-                <th>Región</th>
+                <th>Descripcion</th>
                 
-                <th>Provincia</th>
-                
-                <th>Comuna</th>
-                
-                <th>Dirección</th>
-                
+                <th>Imagen</th>
+                                
                 <th>Acción</th>
                 
             </tr>
-            
+            @foreach (var n in Model)
+            {
             <tr>
                 
-                <td>Jill</td>
+                <td>@ViewBag.ID </td>
                
-                <td>Smith</td>
+                <td>@ViewBag.Nombre</td>
                 
-                <td>50</td>
+                <td>@ViewBag.Precio</td>
                 
-                <td>Jill</td>
+                <td>@ViewBag.Descripcion</td>
                 
-                <td>Smith</td>
-               
-                <td>50</td>
-               
-                <td>Jill</td>
-                
+                <td>@ViewBag.Imagen</td>
+                                               
                 <td>@Html.ActionLink("Modificar", "UP_empresa", "Administrador") | @Html.ActionLink("Eliminar", "ADD_empresa", "Administrador")</td>
                 
             </tr>
-            
-            
+
+            }
         </table>
         
         

@@ -19,8 +19,16 @@ namespace SolucionOfertas.Controllers
         }
 
         // Rutas
+        [HttpGet]
         public ActionResult Adm_producto()
         {
+            
+            return View(entityOferta.PRODUCTO.ToList());
+        }
+        [HttpPost]
+        public ActionResult Adm_producto(string nombre_prod,decimal precio_prod,string descripcion_prod,decimal categoriaProducto,string subCategoriaProducto)
+        {
+            entityOferta.ADD_PRODUCTO_PROCEDURE(nombre_prod, 1, 0, descripcion_prod, precio_prod,"");
             return View();
         }
         public ActionResult Adm_oferta()
