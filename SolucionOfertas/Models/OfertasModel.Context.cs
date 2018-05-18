@@ -37,6 +37,8 @@ namespace SolucionOfertas.Models
         public virtual DbSet<REGION> REGION { get; set; }
         public virtual DbSet<SUBCATE> SUBCATE { get; set; }
         public virtual DbSet<TIENDA> TIENDA { get; set; }
+        public virtual DbSet<EMPRESA> EMPRESA { get; set; }
+        public virtual DbSet<PRODUCTO_VISTA> PRODUCTO_VISTA { get; set; }
     
         public virtual int COMUNA_PROCEDURE(string nOMBRE_COMUNA, string iD_PROVINCIA)
         {
@@ -214,6 +216,44 @@ namespace SolucionOfertas.Models
                 new ObjectParameter("ID_CATEGORIA", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SUBCATE_PROCEDURE", sUBCATE_NOMBREParameter, iD_CATEGORIAParameter);
+        }
+    
+        public virtual int ADD_EMPRESA_PROCEDURE(string nOMBRE_EMPRESA, string rUT_EMPRESA)
+        {
+            var nOMBRE_EMPRESAParameter = nOMBRE_EMPRESA != null ?
+                new ObjectParameter("NOMBRE_EMPRESA", nOMBRE_EMPRESA) :
+                new ObjectParameter("NOMBRE_EMPRESA", typeof(string));
+    
+            var rUT_EMPRESAParameter = rUT_EMPRESA != null ?
+                new ObjectParameter("RUT_EMPRESA", rUT_EMPRESA) :
+                new ObjectParameter("RUT_EMPRESA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_EMPRESA_PROCEDURE", nOMBRE_EMPRESAParameter, rUT_EMPRESAParameter);
+        }
+    
+        public virtual int ADD_TIENDA_PROCEDURE(string nOMBRE_TIENDA, string cALLE_TIENDA, Nullable<decimal> nRO_TIENDA, Nullable<decimal> eMPRESA_TIENDA, Nullable<decimal> cOMUNA_TIENDA)
+        {
+            var nOMBRE_TIENDAParameter = nOMBRE_TIENDA != null ?
+                new ObjectParameter("NOMBRE_TIENDA", nOMBRE_TIENDA) :
+                new ObjectParameter("NOMBRE_TIENDA", typeof(string));
+    
+            var cALLE_TIENDAParameter = cALLE_TIENDA != null ?
+                new ObjectParameter("CALLE_TIENDA", cALLE_TIENDA) :
+                new ObjectParameter("CALLE_TIENDA", typeof(string));
+    
+            var nRO_TIENDAParameter = nRO_TIENDA.HasValue ?
+                new ObjectParameter("NRO_TIENDA", nRO_TIENDA) :
+                new ObjectParameter("NRO_TIENDA", typeof(decimal));
+    
+            var eMPRESA_TIENDAParameter = eMPRESA_TIENDA.HasValue ?
+                new ObjectParameter("EMPRESA_TIENDA", eMPRESA_TIENDA) :
+                new ObjectParameter("EMPRESA_TIENDA", typeof(decimal));
+    
+            var cOMUNA_TIENDAParameter = cOMUNA_TIENDA.HasValue ?
+                new ObjectParameter("COMUNA_TIENDA", cOMUNA_TIENDA) :
+                new ObjectParameter("COMUNA_TIENDA", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_TIENDA_PROCEDURE", nOMBRE_TIENDAParameter, cALLE_TIENDAParameter, nRO_TIENDAParameter, eMPRESA_TIENDAParameter, cOMUNA_TIENDAParameter);
         }
     }
 }

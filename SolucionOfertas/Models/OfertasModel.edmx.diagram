@@ -24,6 +24,9 @@
         <AssociationConnector Association="ModelOfertas.PRODUCTO_TIENDA_FK" />
         <AssociationConnector Association="ModelOfertas.PROVINCIA_REGION_FK" />
         <AssociationConnector Association="ModelOfertas.PERFIL_PERSONA" />
+        <EntityTypeShape EntityType="ModelOfertas.EMPRESA" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="ModelOfertas.TIENDA_EMPRESA_FK" />
+        <EntityTypeShape EntityType="ModelOfertas.PRODUCTO_VISTA" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

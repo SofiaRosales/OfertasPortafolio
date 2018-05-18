@@ -20,6 +20,14 @@
           <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar2" MaxLength="40" Nullable="false" />
         </EntityType>
+        <EntityType Name="EMPRESA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="RUT" Type="varchar2" MaxLength="12" Nullable="false" />
+        </EntityType>
         <EntityType Name="OFERTA">
           <Key>
             <PropertyRef Name="ID" />
@@ -110,6 +118,20 @@
           <Property Name="EMPRESA_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="NOMBRE" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="CALLE" Type="varchar2" MaxLength="40" />
+          <Property Name="NRO" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="PRODUCTO_VISTA">
+          <Key>
+            <PropertyRef Name="NOMBRE" />
+            <PropertyRef Name="TIENDA" />
+            <PropertyRef Name="PRECIO" />
+          </Key>
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="TIENDA" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="PRECIO" Type="number" Precision="38" Scale="0" Nullable="false" />
         </EntityType>
         <Association Name="CATEGORIA_SUBCATE_FK">
           <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
@@ -235,6 +257,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="TIENDA_EMPRESA_FK">
+          <End Role="EMPRESA" Type="Self.EMPRESA" Multiplicity="1" />
+          <End Role="TIENDA" Type="Self.TIENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPRESA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TIENDA">
+              <PropertyRef Name="EMPRESA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ADD_EMPRESA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="NOMBRE_EMPRESA" Type="varchar2" Mode="In" />
+          <Parameter Name="RUT_EMPRESA" Type="varchar2" Mode="In" />
+        </Function>
         <Function Name="ADD_PRODUCTO_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="NOMBRE_PRODUCTO" Type="varchar2" Mode="In" />
           <Parameter Name="CATEGORIA_PRODUCTO" Type="number" Mode="In" />
@@ -242,6 +280,13 @@
           <Parameter Name="DESC_PRODUCTO" Type="varchar2" Mode="In" />
           <Parameter Name="PRECIO_PRODUCTO" Type="number" Mode="In" />
           <Parameter Name="IMAGEN_PRODUCTO" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ADD_TIENDA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="NOMBRE_TIENDA" Type="varchar2" Mode="In" />
+          <Parameter Name="CALLE_TIENDA" Type="varchar2" Mode="In" />
+          <Parameter Name="NRO_TIENDA" Type="number" Mode="In" />
+          <Parameter Name="EMPRESA_TIENDA" Type="number" Mode="In" />
+          <Parameter Name="COMUNA_TIENDA" Type="number" Mode="In" />
         </Function>
         <Function Name="CATEGORIA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="NOMBRE_CATEGORIA" Type="varchar2" Mode="In" />
@@ -284,6 +329,7 @@
         <EntityContainer Name="ModelOfertasStoreContainer">
           <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="COMUNA" EntityType="Self.COMUNA" Schema="DBOFERTAS" store:Type="Tables" />
+          <EntitySet Name="EMPRESA" EntityType="Self.EMPRESA" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="OFERTA" EntityType="Self.OFERTA" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="PERFIL" EntityType="Self.PERFIL" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="PERFIL_PERSONA" EntityType="Self.PERFIL_PERSONA" Schema="DBOFERTAS" store:Type="Tables" />
@@ -293,6 +339,13 @@
           <EntitySet Name="REGION" EntityType="Self.REGION" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="SUBCATE" EntityType="Self.SUBCATE" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="TIENDA" EntityType="Self.TIENDA" Schema="DBOFERTAS" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO_VISTA" EntityType="Self.PRODUCTO_VISTA" store:Type="Views" store:Schema="DBOFERTAS">
+            <DefiningQuery>SELECT 
+"PRODUCTO_VISTA"."NOMBRE" AS "NOMBRE", 
+"PRODUCTO_VISTA"."TIENDA" AS "TIENDA", 
+"PRODUCTO_VISTA"."PRECIO" AS "PRECIO"
+FROM "DBOFERTAS"."PRODUCTO_VISTA" "PRODUCTO_VISTA"</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="CATEGORIA_SUBCATE_FK" Association="Self.CATEGORIA_SUBCATE_FK">
             <End Role="CATEGORIA" EntitySet="CATEGORIA" />
             <End Role="SUBCATE" EntitySet="SUBCATE" />
@@ -331,6 +384,10 @@
           </AssociationSet>
           <AssociationSet Name="TIENDA_COMUNA_FK" Association="Self.TIENDA_COMUNA_FK">
             <End Role="COMUNA" EntitySet="COMUNA" />
+            <End Role="TIENDA" EntitySet="TIENDA" />
+          </AssociationSet>
+          <AssociationSet Name="TIENDA_EMPRESA_FK" Association="Self.TIENDA_EMPRESA_FK">
+            <End Role="EMPRESA" EntitySet="EMPRESA" />
             <End Role="TIENDA" EntitySet="TIENDA" />
           </AssociationSet>
         </EntityContainer>
@@ -437,6 +494,23 @@
             <Parameter Name="SUBCATE_NOMBRE" Mode="In" Type="String" />
             <Parameter Name="ID_CATEGORIA" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="EMPRESA" EntityType="ModelOfertas.EMPRESA" />
+          <AssociationSet Name="TIENDA_EMPRESA_FK" Association="ModelOfertas.TIENDA_EMPRESA_FK">
+            <End Role="EMPRESA" EntitySet="EMPRESA" />
+            <End Role="TIENDA" EntitySet="TIENDA" />
+          </AssociationSet>
+          <FunctionImport Name="ADD_EMPRESA_PROCEDURE">
+            <Parameter Name="NOMBRE_EMPRESA" Mode="In" Type="String" />
+            <Parameter Name="RUT_EMPRESA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ADD_TIENDA_PROCEDURE">
+            <Parameter Name="NOMBRE_TIENDA" Mode="In" Type="String" />
+            <Parameter Name="CALLE_TIENDA" Mode="In" Type="String" />
+            <Parameter Name="NRO_TIENDA" Mode="In" Type="Decimal" />
+            <Parameter Name="EMPRESA_TIENDA" Mode="In" Type="Decimal" />
+            <Parameter Name="COMUNA_TIENDA" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <EntitySet Name="PRODUCTO_VISTA" EntityType="ModelOfertas.PRODUCTO_VISTA" />
         </EntityContainer>
         <EntityType Name="CATEGORIA">
           <Key>
@@ -553,6 +627,9 @@
           <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="COMUNA" Relationship="ModelOfertas.TIENDA_COMUNA_FK" FromRole="TIENDA" ToRole="COMUNA" />
           <NavigationProperty Name="PRODUCTO" Relationship="ModelOfertas.PRODUCTO_TIENDA_FK" FromRole="TIENDA" ToRole="PRODUCTO" />
+          <Property Name="CALLE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="NRO" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="EMPRESA" Relationship="ModelOfertas.TIENDA_EMPRESA_FK" FromRole="TIENDA" ToRole="EMPRESA" />
         </EntityType>
         <Association Name="CATEGORIA_SUBCATE_FK">
           <End Type="ModelOfertas.CATEGORIA" Role="CATEGORIA" Multiplicity="1" />
@@ -654,6 +731,37 @@
           <End Type="ModelOfertas.PERFIL" Role="PERFIL" Multiplicity="*" />
           <End Type="ModelOfertas.PERSONA" Role="PERSONA" Multiplicity="*" />
         </Association>
+        <EntityType Name="EMPRESA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="RUT" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TIENDA" Relationship="ModelOfertas.TIENDA_EMPRESA_FK" FromRole="EMPRESA" ToRole="TIENDA" />
+        </EntityType>
+        <Association Name="TIENDA_EMPRESA_FK">
+          <End Type="ModelOfertas.EMPRESA" Role="EMPRESA" Multiplicity="1" />
+          <End Type="ModelOfertas.TIENDA" Role="TIENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPRESA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TIENDA">
+              <PropertyRef Name="EMPRESA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PRODUCTO_VISTA">
+          <Key>
+            <PropertyRef Name="NOMBRE" />
+            <PropertyRef Name="TIENDA" />
+            <PropertyRef Name="PRECIO" />
+          </Key>
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="TIENDA" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PRECIO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -766,6 +874,8 @@
           <EntitySetMapping Name="TIENDA">
             <EntityTypeMapping TypeName="ModelOfertas.TIENDA">
               <MappingFragment StoreEntitySet="TIENDA">
+                <ScalarProperty Name="NRO" ColumnName="NRO" />
+                <ScalarProperty Name="CALLE" ColumnName="CALLE" />
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EMPRESA_ID" ColumnName="EMPRESA_ID" />
@@ -785,6 +895,26 @@
           <FunctionImportMapping FunctionImportName="CATEGORIA_PROCEDURE" FunctionName="ModelOfertas.Store.CATEGORIA_PROCEDURE" />
           <FunctionImportMapping FunctionImportName="PERSONA_UPDATE_PROCEDURE" FunctionName="ModelOfertas.Store.PERSONA_UPDATE_PROCEDURE" />
           <FunctionImportMapping FunctionImportName="SUBCATE_PROCEDURE" FunctionName="ModelOfertas.Store.SUBCATE_PROCEDURE" />
+          <EntitySetMapping Name="EMPRESA">
+            <EntityTypeMapping TypeName="ModelOfertas.EMPRESA">
+              <MappingFragment StoreEntitySet="EMPRESA">
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ADD_EMPRESA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_EMPRESA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_TIENDA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_TIENDA_PROCEDURE" />
+          <EntitySetMapping Name="PRODUCTO_VISTA">
+            <EntityTypeMapping TypeName="ModelOfertas.PRODUCTO_VISTA">
+              <MappingFragment StoreEntitySet="PRODUCTO_VISTA">
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="TIENDA" ColumnName="TIENDA" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

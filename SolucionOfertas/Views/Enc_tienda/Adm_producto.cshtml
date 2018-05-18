@@ -1,4 +1,5 @@
-﻿@model SolucionOfertas.Models.PRODUCTO
+﻿@model IEnumerable<SolucionOfertas.Models.PRODUCTO>
+
 @{
     ViewBag.Title = "Adm_producto";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -32,7 +33,7 @@
                 <th>Acción</th>
                 
             </tr>
-            @foreach (var n in Model)
+            @foreach (var item in Model)
             {
             <tr>
                 

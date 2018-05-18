@@ -194,6 +194,9 @@
     <Compile Include="Models\COMUNA.cs">
       <DependentUpon>OfertasModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\EMPRESA.cs">
+      <DependentUpon>OfertasModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OFERTA.cs">
@@ -221,6 +224,9 @@
       <DependentUpon>OfertasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PRODUCTO.cs">
+      <DependentUpon>OfertasModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRODUCTO_VISTA.cs">
       <DependentUpon>OfertasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PROVINCIA.cs">
