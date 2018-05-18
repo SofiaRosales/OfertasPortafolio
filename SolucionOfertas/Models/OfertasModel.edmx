@@ -273,6 +273,14 @@ advertencia 6002: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
           <Parameter Name="NOMBRE_EMPRESA" Type="varchar2" Mode="In" />
           <Parameter Name="RUT_EMPRESA" Type="varchar2" Mode="In" />
         </Function>
+        <Function Name="ADD_OFERTA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="NOMBRE_OFERTA" Type="varchar2" Mode="In" />
+          <Parameter Name="PRODUCTO_OFERTA" Type="number" Mode="In" />
+          <Parameter Name="ESTADO" Type="char" Mode="In" />
+          <Parameter Name="DSCTO" Type="number" Mode="In" />
+          <Parameter Name="STOCK" Type="number" Mode="In" />
+          <Parameter Name="PRECIO_DESCUENTO" Type="number" Mode="In" />
+        </Function>
         <Function Name="ADD_PRODUCTO_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="NOMBRE_PRODUCTO" Type="varchar2" Mode="In" />
           <Parameter Name="CATEGORIA_PRODUCTO" Type="number" Mode="In" />
@@ -511,6 +519,14 @@ FROM "DBOFERTAS"."PRODUCTO_VISTA" "PRODUCTO_VISTA"</DefiningQuery>
             <Parameter Name="COMUNA_TIENDA" Mode="In" Type="Decimal" />
           </FunctionImport>
           <EntitySet Name="PRODUCTO_VISTA" EntityType="ModelOfertas.PRODUCTO_VISTA" />
+          <FunctionImport Name="ADD_OFERTA_PROCEDURE">
+            <Parameter Name="NOMBRE_OFERTA" Mode="In" Type="String" />
+            <Parameter Name="PRODUCTO_OFERTA" Mode="In" Type="Decimal" />
+            <Parameter Name="ESTADO" Mode="In" Type="String" />
+            <Parameter Name="DSCTO" Mode="In" Type="Decimal" />
+            <Parameter Name="STOCK" Mode="In" Type="Decimal" />
+            <Parameter Name="PRECIO_DESCUENTO" Mode="In" Type="Decimal" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="CATEGORIA">
           <Key>
@@ -915,6 +931,7 @@ FROM "DBOFERTAS"."PRODUCTO_VISTA" "PRODUCTO_VISTA"</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ADD_OFERTA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_OFERTA_PROCEDURE" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
