@@ -31,7 +31,7 @@ namespace SolucionOfertas.Controllers
                 PasswordHasher a = new PasswordHasher();
                 
 
-                datos.PERSONA_PROCEDURE(correo,rut,a.HashPassword(pass), dv, nombre, apellido, comuna);
+                datos.ADD_PERSONA_PROCEDURE(correo,rut,a.HashPassword(pass), dv, nombre, apellido, comuna);
 
                 //ManageController
                 //UserManager.add

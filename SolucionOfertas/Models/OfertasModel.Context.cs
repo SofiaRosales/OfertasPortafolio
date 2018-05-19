@@ -255,5 +255,158 @@ namespace SolucionOfertas.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_TIENDA_PROCEDURE", nOMBRE_TIENDAParameter, cALLE_TIENDAParameter, nRO_TIENDAParameter, eMPRESA_TIENDAParameter, cOMUNA_TIENDAParameter);
         }
+    
+        public virtual int ADD_OFERTA_PROCEDURE(string nOMBRE_OFERTA, Nullable<decimal> pRODUCTO_OFERTA, string eSTADO, Nullable<decimal> dSCTO, Nullable<decimal> sTOCK, Nullable<decimal> pRECIO_DESCUENTO)
+        {
+            var nOMBRE_OFERTAParameter = nOMBRE_OFERTA != null ?
+                new ObjectParameter("NOMBRE_OFERTA", nOMBRE_OFERTA) :
+                new ObjectParameter("NOMBRE_OFERTA", typeof(string));
+    
+            var pRODUCTO_OFERTAParameter = pRODUCTO_OFERTA.HasValue ?
+                new ObjectParameter("PRODUCTO_OFERTA", pRODUCTO_OFERTA) :
+                new ObjectParameter("PRODUCTO_OFERTA", typeof(decimal));
+    
+            var eSTADOParameter = eSTADO != null ?
+                new ObjectParameter("ESTADO", eSTADO) :
+                new ObjectParameter("ESTADO", typeof(string));
+    
+            var dSCTOParameter = dSCTO.HasValue ?
+                new ObjectParameter("DSCTO", dSCTO) :
+                new ObjectParameter("DSCTO", typeof(decimal));
+    
+            var sTOCKParameter = sTOCK.HasValue ?
+                new ObjectParameter("STOCK", sTOCK) :
+                new ObjectParameter("STOCK", typeof(decimal));
+    
+            var pRECIO_DESCUENTOParameter = pRECIO_DESCUENTO.HasValue ?
+                new ObjectParameter("PRECIO_DESCUENTO", pRECIO_DESCUENTO) :
+                new ObjectParameter("PRECIO_DESCUENTO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_OFERTA_PROCEDURE", nOMBRE_OFERTAParameter, pRODUCTO_OFERTAParameter, eSTADOParameter, dSCTOParameter, sTOCKParameter, pRECIO_DESCUENTOParameter);
+        }
+    
+        public virtual int ADD_CATEGORIA_PROCEDURE(string nOMBRE_CATEGORIA)
+        {
+            var nOMBRE_CATEGORIAParameter = nOMBRE_CATEGORIA != null ?
+                new ObjectParameter("NOMBRE_CATEGORIA", nOMBRE_CATEGORIA) :
+                new ObjectParameter("NOMBRE_CATEGORIA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_CATEGORIA_PROCEDURE", nOMBRE_CATEGORIAParameter);
+        }
+    
+        public virtual int ADD_COMUNA_PROCEDURE(string nOMBRE_COMUNA, string iD_PROVINCIA)
+        {
+            var nOMBRE_COMUNAParameter = nOMBRE_COMUNA != null ?
+                new ObjectParameter("NOMBRE_COMUNA", nOMBRE_COMUNA) :
+                new ObjectParameter("NOMBRE_COMUNA", typeof(string));
+    
+            var iD_PROVINCIAParameter = iD_PROVINCIA != null ?
+                new ObjectParameter("ID_PROVINCIA", iD_PROVINCIA) :
+                new ObjectParameter("ID_PROVINCIA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_COMUNA_PROCEDURE", nOMBRE_COMUNAParameter, iD_PROVINCIAParameter);
+        }
+    
+        public virtual int ADD_PERFIL_PROCEDURE(string pERFIL_NOMBRE)
+        {
+            var pERFIL_NOMBREParameter = pERFIL_NOMBRE != null ?
+                new ObjectParameter("PERFIL_NOMBRE", pERFIL_NOMBRE) :
+                new ObjectParameter("PERFIL_NOMBRE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_PERFIL_PROCEDURE", pERFIL_NOMBREParameter);
+        }
+    
+        public virtual int ADD_PERSONA_PROCEDURE(string pERSONA_EMAIL, string pERSONA_RUT, string pERSONA_CONTRASENA, string pERSONA_DV, string pERSONA_NOMBRE, string pERSONA_APELLIDO, string pERSONA_COMUNA)
+        {
+            var pERSONA_EMAILParameter = pERSONA_EMAIL != null ?
+                new ObjectParameter("PERSONA_EMAIL", pERSONA_EMAIL) :
+                new ObjectParameter("PERSONA_EMAIL", typeof(string));
+    
+            var pERSONA_RUTParameter = pERSONA_RUT != null ?
+                new ObjectParameter("PERSONA_RUT", pERSONA_RUT) :
+                new ObjectParameter("PERSONA_RUT", typeof(string));
+    
+            var pERSONA_CONTRASENAParameter = pERSONA_CONTRASENA != null ?
+                new ObjectParameter("PERSONA_CONTRASENA", pERSONA_CONTRASENA) :
+                new ObjectParameter("PERSONA_CONTRASENA", typeof(string));
+    
+            var pERSONA_DVParameter = pERSONA_DV != null ?
+                new ObjectParameter("PERSONA_DV", pERSONA_DV) :
+                new ObjectParameter("PERSONA_DV", typeof(string));
+    
+            var pERSONA_NOMBREParameter = pERSONA_NOMBRE != null ?
+                new ObjectParameter("PERSONA_NOMBRE", pERSONA_NOMBRE) :
+                new ObjectParameter("PERSONA_NOMBRE", typeof(string));
+    
+            var pERSONA_APELLIDOParameter = pERSONA_APELLIDO != null ?
+                new ObjectParameter("PERSONA_APELLIDO", pERSONA_APELLIDO) :
+                new ObjectParameter("PERSONA_APELLIDO", typeof(string));
+    
+            var pERSONA_COMUNAParameter = pERSONA_COMUNA != null ?
+                new ObjectParameter("PERSONA_COMUNA", pERSONA_COMUNA) :
+                new ObjectParameter("PERSONA_COMUNA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_PERSONA_PROCEDURE", pERSONA_EMAILParameter, pERSONA_RUTParameter, pERSONA_CONTRASENAParameter, pERSONA_DVParameter, pERSONA_NOMBREParameter, pERSONA_APELLIDOParameter, pERSONA_COMUNAParameter);
+        }
+    
+        public virtual int ADD_PROVINCIA_PROCEDURE(string nOMBRE_PROVINCIA, string iD_REGION)
+        {
+            var nOMBRE_PROVINCIAParameter = nOMBRE_PROVINCIA != null ?
+                new ObjectParameter("NOMBRE_PROVINCIA", nOMBRE_PROVINCIA) :
+                new ObjectParameter("NOMBRE_PROVINCIA", typeof(string));
+    
+            var iD_REGIONParameter = iD_REGION != null ?
+                new ObjectParameter("ID_REGION", iD_REGION) :
+                new ObjectParameter("ID_REGION", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_PROVINCIA_PROCEDURE", nOMBRE_PROVINCIAParameter, iD_REGIONParameter);
+        }
+    
+        public virtual int ADD_REGION_PROCEDURE(string nOMBRE_REGION)
+        {
+            var nOMBRE_REGIONParameter = nOMBRE_REGION != null ?
+                new ObjectParameter("NOMBRE_REGION", nOMBRE_REGION) :
+                new ObjectParameter("NOMBRE_REGION", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_REGION_PROCEDURE", nOMBRE_REGIONParameter);
+        }
+    
+        public virtual int ADD_SUBCATE_PROCEDURE(string sUBCATE_NOMBRE, string iD_CATEGORIA)
+        {
+            var sUBCATE_NOMBREParameter = sUBCATE_NOMBRE != null ?
+                new ObjectParameter("SUBCATE_NOMBRE", sUBCATE_NOMBRE) :
+                new ObjectParameter("SUBCATE_NOMBRE", typeof(string));
+    
+            var iD_CATEGORIAParameter = iD_CATEGORIA != null ?
+                new ObjectParameter("ID_CATEGORIA", iD_CATEGORIA) :
+                new ObjectParameter("ID_CATEGORIA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_SUBCATE_PROCEDURE", sUBCATE_NOMBREParameter, iD_CATEGORIAParameter);
+        }
+    
+        public virtual int UPDATE_PERSONA_PROCEDURE(string nOMBRE_PERSONA, string aPELLIDO_PERSONA, string cORREO_PERSONA, string rUT_PERSONA, string iD_COMUNA)
+        {
+            var nOMBRE_PERSONAParameter = nOMBRE_PERSONA != null ?
+                new ObjectParameter("NOMBRE_PERSONA", nOMBRE_PERSONA) :
+                new ObjectParameter("NOMBRE_PERSONA", typeof(string));
+    
+            var aPELLIDO_PERSONAParameter = aPELLIDO_PERSONA != null ?
+                new ObjectParameter("APELLIDO_PERSONA", aPELLIDO_PERSONA) :
+                new ObjectParameter("APELLIDO_PERSONA", typeof(string));
+    
+            var cORREO_PERSONAParameter = cORREO_PERSONA != null ?
+                new ObjectParameter("CORREO_PERSONA", cORREO_PERSONA) :
+                new ObjectParameter("CORREO_PERSONA", typeof(string));
+    
+            var rUT_PERSONAParameter = rUT_PERSONA != null ?
+                new ObjectParameter("RUT_PERSONA", rUT_PERSONA) :
+                new ObjectParameter("RUT_PERSONA", typeof(string));
+    
+            var iD_COMUNAParameter = iD_COMUNA != null ?
+                new ObjectParameter("ID_COMUNA", iD_COMUNA) :
+                new ObjectParameter("ID_COMUNA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UPDATE_PERSONA_PROCEDURE", nOMBRE_PERSONAParameter, aPELLIDO_PERSONAParameter, cORREO_PERSONAParameter, rUT_PERSONAParameter, iD_COMUNAParameter);
+        }
     }
 }
