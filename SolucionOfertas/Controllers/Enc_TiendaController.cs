@@ -25,10 +25,12 @@ namespace SolucionOfertas.Controllers
             
             return View(entityOferta.PRODUCTO.ToList());
         }
+
         [HttpPost]
-        public ActionResult Add_producto(string nombre_prod,decimal precio_prod,string descripcion_prod,decimal categoriaProducto,string subCategoriaProducto)
+        public ActionResult Add_producto(string nombre_prod,decimal precio_prod,string descripcion_prod,decimal categoriaProducto,decimal subCategoriaProducto, string foto_prod)
         {
-            entityOferta.ADD_PRODUCTO_PROCEDURE(nombre_prod, 1, 0, descripcion_prod, precio_prod,"");
+           
+            entityOferta.ADD_PRODUCTO_PROCEDURE(nombre_prod, categoriaProducto, descripcion_prod, precio_prod, foto_prod);
             return RedirectToAction("Adm_producto");
         }
         public ActionResult Adm_oferta()
@@ -48,6 +50,7 @@ namespace SolucionOfertas.Controllers
 
             return View();
         }
+
         public ActionResult ADD_producto()
         {
             
@@ -62,6 +65,7 @@ namespace SolucionOfertas.Controllers
 
             return View();
         }
+
         public ActionResult UP_oferta()
         {
             var getCategoriasList = entityOferta.CATEGORIA.ToList();
@@ -74,7 +78,7 @@ namespace SolucionOfertas.Controllers
 
             return View();
         }
-        public ActionResult UP_producto()
+        public ActionResult UP_producto(int id)
         {
             var getCategoriasList = entityOferta.CATEGORIA.ToList();
             SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
