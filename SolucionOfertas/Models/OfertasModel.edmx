@@ -53,6 +53,7 @@
           </Key>
           <Property Name="ID_PERSONA" Type="nvarchar2" MaxLength="128" Nullable="false" />
           <Property Name="ID_PERFIL" Type="nvarchar2" MaxLength="128" Nullable="false" />
+          <Property Name="ID" Type="number" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -333,6 +334,13 @@ advertencia 6002: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
           <Parameter Name="RUT_PERSONA" Type="varchar2" Mode="In" />
           <Parameter Name="ID_COMUNA" Type="varchar2" Mode="In" />
         </Function>
+        <Function Name="UP_PRODUCTO_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="PRECIO_PRODUCTO" Type="number" Mode="In" />
+          <Parameter Name="NOMBRE_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="DESCRIP_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="IMAGEN_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="ID_PRODUCTO" Type="number" Mode="In" />
+        </Function>
         <EntityContainer Name="ModelOfertasStoreContainer">
           <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="COMUNA" EntityType="Self.COMUNA" Schema="DBOFERTAS" store:Type="Tables" />
@@ -562,6 +570,13 @@ FROM "DBOFERTAS"."PRODUCTO_VISTA" "PRODUCTO_VISTA"</DefiningQuery>
             <Parameter Name="CORREO_PERSONA" Mode="In" Type="String" />
             <Parameter Name="RUT_PERSONA" Mode="In" Type="String" />
             <Parameter Name="ID_COMUNA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UP_PRODUCTO_PROCEDURE">
+            <Parameter Name="PRECIO_PRODUCTO" Mode="In" Type="Decimal" />
+            <Parameter Name="NOMBRE_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="DESCRIP_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="IMAGEN_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="ID_PRODUCTO" Mode="In" Type="Decimal" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CATEGORIA">
@@ -968,6 +983,7 @@ FROM "DBOFERTAS"."PRODUCTO_VISTA" "PRODUCTO_VISTA"</DefiningQuery>
           <FunctionImportMapping FunctionImportName="ADD_REGION_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_REGION_PROCEDURE" />
           <FunctionImportMapping FunctionImportName="ADD_SUBCATE_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_SUBCATE_PROCEDURE" />
           <FunctionImportMapping FunctionImportName="UPDATE_PERSONA_PROCEDURE" FunctionName="ModelOfertas.Store.UPDATE_PERSONA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="UP_PRODUCTO_PROCEDURE" FunctionName="ModelOfertas.Store.UP_PRODUCTO_PROCEDURE" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
