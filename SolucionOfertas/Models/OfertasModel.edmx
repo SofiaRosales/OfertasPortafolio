@@ -304,7 +304,6 @@ advertencia 6002: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
         <Function Name="ADD_PRODUCTO_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="NOMBRE_PRODUCTO" Type="varchar2" Mode="In" />
           <Parameter Name="CATEGORIA_PRODUCTO" Type="number" Mode="In" />
-          <Parameter Name="TIENDA_PRODUCTO" Type="number" Mode="In" />
           <Parameter Name="DESC_PRODUCTO" Type="varchar2" Mode="In" />
           <Parameter Name="PRECIO_PRODUCTO" Type="number" Mode="In" />
           <Parameter Name="IMAGEN_PRODUCTO" Type="varchar2" Mode="In" />
@@ -489,7 +488,6 @@ FROM "DBOFERTAS"."PRODUCTO_VISTA" "PRODUCTO_VISTA"</DefiningQuery>
           <FunctionImport Name="ADD_PRODUCTO_PROCEDURE">
             <Parameter Name="NOMBRE_PRODUCTO" Mode="In" Type="String" />
             <Parameter Name="CATEGORIA_PRODUCTO" Mode="In" Type="Decimal" />
-            <Parameter Name="TIENDA_PRODUCTO" Mode="In" Type="Decimal" />
             <Parameter Name="DESC_PRODUCTO" Mode="In" Type="String" />
             <Parameter Name="PRECIO_PRODUCTO" Mode="In" Type="Decimal" />
             <Parameter Name="IMAGEN_PRODUCTO" Mode="In" Type="String" />
