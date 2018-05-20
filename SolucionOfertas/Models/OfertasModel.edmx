@@ -53,6 +53,7 @@
           </Key>
           <Property Name="ID_PERSONA" Type="nvarchar2" MaxLength="128" Nullable="false" />
           <Property Name="ID_PERFIL" Type="nvarchar2" MaxLength="128" Nullable="false" />
+          <Property Name="ID" Type="number" Precision="38" Scale="0" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -122,12 +123,17 @@
           <Property Name="NRO" Type="number" Precision="38" Scale="0" />
         </EntityType>
         <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+advertencia 6002: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="PRODUCTO_VISTA">
-          <Property Name="NOMBRE" Type="varchar2" MaxLength="40" />
-          <Property Name="TIENDA" Type="varchar2" MaxLength="40" />
-          <Property Name="PRECIO" Type="number" Precision="38" Scale="0" />
-        </EntityType>-->
+          <Key>
+            <PropertyRef Name="NOMBRE" />
+            <PropertyRef Name="TIENDA" />
+            <PropertyRef Name="PRECIO" />
+          </Key>
+          <Property Name="NOMBRE" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="TIENDA" Type="varchar2" MaxLength="40" Nullable="false" />
+          <Property Name="PRECIO" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
         <Association Name="CATEGORIA_SUBCATE_FK">
           <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
           <End Role="SUBCATE" Type="Self.SUBCATE" Multiplicity="*" />
@@ -264,6 +270,13 @@ advertencia 6013: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ADD_CATEGORIA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="NOMBRE_CATEGORIA" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ADD_COMUNA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="NOMBRE_COMUNA" Type="varchar2" Mode="In" />
+          <Parameter Name="ID_PROVINCIA" Type="varchar2" Mode="In" />
+        </Function>
         <Function Name="ADD_EMPRESA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="NOMBRE_EMPRESA" Type="varchar2" Mode="In" />
           <Parameter Name="RUT_EMPRESA" Type="varchar2" Mode="In" />
@@ -276,12 +289,36 @@ advertencia 6013: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
           <Parameter Name="STOCK" Type="number" Mode="In" />
           <Parameter Name="PRECIO_DESCUENTO" Type="number" Mode="In" />
         </Function>
+        <Function Name="ADD_PERFIL_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="PERFIL_NOMBRE" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ADD_PERSONA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="PERSONA_EMAIL" Type="varchar2" Mode="In" />
+          <Parameter Name="PERSONA_RUT" Type="varchar2" Mode="In" />
+          <Parameter Name="PERSONA_CONTRASENA" Type="nclob" Mode="In" />
+          <Parameter Name="PERSONA_DV" Type="varchar2" Mode="In" />
+          <Parameter Name="PERSONA_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="PERSONA_APELLIDO" Type="varchar2" Mode="In" />
+          <Parameter Name="PERSONA_COMUNA" Type="varchar2" Mode="In" />
+        </Function>
         <Function Name="ADD_PRODUCTO_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="NOMBRE_PRODUCTO" Type="varchar2" Mode="In" />
           <Parameter Name="CATEGORIA_PRODUCTO" Type="number" Mode="In" />
+          <Parameter Name="TIENDA_PRODUCTO" Type="number" Mode="In" />
           <Parameter Name="DESC_PRODUCTO" Type="varchar2" Mode="In" />
           <Parameter Name="PRECIO_PRODUCTO" Type="number" Mode="In" />
           <Parameter Name="IMAGEN_PRODUCTO" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ADD_PROVINCIA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="NOMBRE_PROVINCIA" Type="varchar2" Mode="In" />
+          <Parameter Name="ID_REGION" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ADD_REGION_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="NOMBRE_REGION" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="ADD_SUBCATE_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="SUBCATE_NOMBRE" Type="varchar2" Mode="In" />
+          <Parameter Name="ID_CATEGORIA" Type="varchar2" Mode="In" />
         </Function>
         <Function Name="ADD_TIENDA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="NOMBRE_TIENDA" Type="varchar2" Mode="In" />
@@ -289,6 +326,20 @@ advertencia 6013: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
           <Parameter Name="NRO_TIENDA" Type="number" Mode="In" />
           <Parameter Name="EMPRESA_TIENDA" Type="number" Mode="In" />
           <Parameter Name="COMUNA_TIENDA" Type="number" Mode="In" />
+        </Function>
+        <Function Name="UPDATE_PERSONA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="NOMBRE_PERSONA" Type="varchar2" Mode="In" />
+          <Parameter Name="APELLIDO_PERSONA" Type="varchar2" Mode="In" />
+          <Parameter Name="CORREO_PERSONA" Type="varchar2" Mode="In" />
+          <Parameter Name="RUT_PERSONA" Type="varchar2" Mode="In" />
+          <Parameter Name="ID_COMUNA" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="UP_PRODUCTO_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
+          <Parameter Name="PRECIO_PRODUCTO" Type="number" Mode="In" />
+          <Parameter Name="NOMBRE_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="DESCRIP_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="IMAGEN_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="ID_PRODUCTO" Type="number" Mode="In" />
         </Function>
         <EntityContainer Name="ModelOfertasStoreContainer">
           <EntitySet Name="CATEGORIA" EntityType="Self.CATEGORIA" Schema="DBOFERTAS" store:Type="Tables" />
@@ -303,6 +354,13 @@ advertencia 6013: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
           <EntitySet Name="REGION" EntityType="Self.REGION" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="SUBCATE" EntityType="Self.SUBCATE" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="TIENDA" EntityType="Self.TIENDA" Schema="DBOFERTAS" store:Type="Tables" />
+          <EntitySet Name="PRODUCTO_VISTA" EntityType="Self.PRODUCTO_VISTA" store:Type="Views" store:Schema="DBOFERTAS">
+            <DefiningQuery>SELECT 
+"PRODUCTO_VISTA"."NOMBRE" AS "NOMBRE", 
+"PRODUCTO_VISTA"."TIENDA" AS "TIENDA", 
+"PRODUCTO_VISTA"."PRECIO" AS "PRECIO"
+FROM "DBOFERTAS"."PRODUCTO_VISTA" "PRODUCTO_VISTA"</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="CATEGORIA_SUBCATE_FK" Association="Self.CATEGORIA_SUBCATE_FK">
             <End Role="CATEGORIA" EntitySet="CATEGORIA" />
             <End Role="SUBCATE" EntitySet="SUBCATE" />
@@ -431,6 +489,7 @@ advertencia 6013: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
           <FunctionImport Name="ADD_PRODUCTO_PROCEDURE">
             <Parameter Name="NOMBRE_PRODUCTO" Mode="In" Type="String" />
             <Parameter Name="CATEGORIA_PRODUCTO" Mode="In" Type="Decimal" />
+            <Parameter Name="TIENDA_PRODUCTO" Mode="In" Type="Decimal" />
             <Parameter Name="DESC_PRODUCTO" Mode="In" Type="String" />
             <Parameter Name="PRECIO_PRODUCTO" Mode="In" Type="Decimal" />
             <Parameter Name="IMAGEN_PRODUCTO" Mode="In" Type="String" />
@@ -466,6 +525,7 @@ advertencia 6013: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
             <Parameter Name="EMPRESA_TIENDA" Mode="In" Type="Decimal" />
             <Parameter Name="COMUNA_TIENDA" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <EntitySet Name="PRODUCTO_VISTA" EntityType="ModelOfertas.PRODUCTO_VISTA" />
           <FunctionImport Name="ADD_OFERTA_PROCEDURE">
             <Parameter Name="NOMBRE_OFERTA" Mode="In" Type="String" />
             <Parameter Name="PRODUCTO_OFERTA" Mode="In" Type="Decimal" />
@@ -510,6 +570,13 @@ advertencia 6013: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
             <Parameter Name="CORREO_PERSONA" Mode="In" Type="String" />
             <Parameter Name="RUT_PERSONA" Mode="In" Type="String" />
             <Parameter Name="ID_COMUNA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UP_PRODUCTO_PROCEDURE">
+            <Parameter Name="PRECIO_PRODUCTO" Mode="In" Type="Decimal" />
+            <Parameter Name="NOMBRE_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="DESCRIP_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="IMAGEN_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="ID_PRODUCTO" Mode="In" Type="Decimal" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="CATEGORIA">
@@ -752,6 +819,16 @@ advertencia 6013: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="PRODUCTO_VISTA">
+          <Key>
+            <PropertyRef Name="NOMBRE" />
+            <PropertyRef Name="TIENDA" />
+            <PropertyRef Name="PRECIO" />
+          </Key>
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="TIENDA" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="PRECIO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -888,7 +965,25 @@ advertencia 6013: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ADD_EMPRESA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_EMPRESA_PROCEDURE" />
           <FunctionImportMapping FunctionImportName="ADD_TIENDA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_TIENDA_PROCEDURE" />
+          <EntitySetMapping Name="PRODUCTO_VISTA">
+            <EntityTypeMapping TypeName="ModelOfertas.PRODUCTO_VISTA">
+              <MappingFragment StoreEntitySet="PRODUCTO_VISTA">
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="TIENDA" ColumnName="TIENDA" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ADD_OFERTA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_OFERTA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_CATEGORIA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_CATEGORIA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_COMUNA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_COMUNA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_PERFIL_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_PERFIL_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_PERSONA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_PERSONA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_PROVINCIA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_PROVINCIA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_REGION_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_REGION_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_SUBCATE_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_SUBCATE_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="UPDATE_PERSONA_PROCEDURE" FunctionName="ModelOfertas.Store.UPDATE_PERSONA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="UP_PRODUCTO_PROCEDURE" FunctionName="ModelOfertas.Store.UP_PRODUCTO_PROCEDURE" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -21,17 +21,18 @@ namespace LoginOfertas3.Controllers
         // GET: Rutas Empresa
         public ActionResult Adm_empresas()
         {
+            return View(datos.EMPRESA.ToList());
+        }
+        [HttpGet]
+        public ActionResult Add_empresas()
+        {
             return View();
         }
-        public ActionResult ADD_empresa(string nombre,string rut,REGION region, PROVINCIA provincia,COMUNA comuna,string direccion)
+        [HttpPost]
+        public ActionResult ADD_empresas(string nombre,string rut)
         {
-            if (ModelState.IsValid)
-            {
-
-                //datos.EMPRESA_PROCEDURE(nombre,rut,region,provincia,comuna,direccion);
-
-            }
-            return View();
+            datos.ADD_EMPRESA_PROCEDURE(nombre, rut);
+            return RedirectToAction("Adm_empresas");
         }
 
         public ActionResult Adm_producto(string nombre_prod, decimal precio_prod, string descripcion_prod, decimal categoriaProducto, string subCategoriaProducto)

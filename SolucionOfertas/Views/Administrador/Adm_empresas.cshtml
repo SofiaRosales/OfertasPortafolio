@@ -1,4 +1,6 @@
 ﻿
+@model IEnumerable<SolucionOfertas.Models.EMPRESA>
+
 @{
     ViewBag.Title = "Administrar_empresas";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,7 +10,7 @@
 <br />
 <div>
     <h2>Administrar empresas</h2>
-    @Html.ActionLink("Agregar empresa", "ADD_empresa", "Administrador")
+    @Html.ActionLink("Agregar empresa", "ADD_empresas", "Administrador")
     <br />
     <br />
 
@@ -19,23 +21,17 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>RUT</th>
-                <th>Región</th>
-                <th>Provincia</th>
-                <th>Comuna</th>
-                <th>Dirección</th>
                 <th>Acción</th>
             </tr>
+            @foreach (var item in Model)
+            {
             <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-                <td>Jill</td>
-                <td>@Html.ActionLink("Modificar", "UP_empresa", "Administrador") | @Html.ActionLink("Eliminar", "ADD_empresa", "Administrador")</td>
+                <td>@item.ID</td>
+                <td>@item.NOMBRE</td>
+                <td>@item.RUT</td>
+                <td>@Html.ActionLink("Modificar", "UP_empresa", "Administrador") | @Html.ActionLink("Eliminar", "ADD_empresas", "Administrador")</td>
             </tr>
-            
+            }
         </table> 
 
     </center>
