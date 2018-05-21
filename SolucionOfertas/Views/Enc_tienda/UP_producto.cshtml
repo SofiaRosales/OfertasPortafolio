@@ -1,4 +1,5 @@
-﻿
+﻿@model SolucionOfertas.Models.PRODUCTO
+
 @{
     ViewBag.Title = "Modificar producto";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,30 +19,27 @@
                         <td>
                             <div class="form-group">
                                 <label accesskey="" style="text-align:left">Nombre </label>
-                                <input      class="form-control" name="nombre_prod" style="width:90%" placeholder="Nombre producto">
+                                <input      class="form-control" name="nombre_prod" style="width:90%" placeholder="Nombre producto" value="@Model.NOMBRE">
                             </div>
                             <div class="form-group">
                                 <label accesskey="" style="text-align:left">Precio ($x.xxx)</label>
-                                <input class="form-control" name="precio_prod" style="width:90%">
+                                <input class="form-control" name="precio_prod" style="width:90%" value="@Model.PRECIO">
                             </div>
                             <div class="form-group">
                                 <label>Descripción</label><br />
-                                <textarea   class="form-control" name="descripcion_prod" rows="3"    style="width:90%"></textarea> 
+                                <textarea   class="form-control" name="descripcion_prod" rows="3"    style="width:90%" > @Model.DESCRIPCION</textarea> 
                             </div>
                         </td>   
 
                         <td>
                                 <div class="form-group">
                                     <label>Categoría</label>
-                                    @Html.DropDownList("categoriaProducto", ViewBag.categoriaListName as SelectList, "Seleccione categoria")
+                                        @Html.DropDownList("categoriaProducto", ViewBag.categoriaListName as SelectList, "Seleccione categoria") 
                                 </div>
-                                <div class="form-group">
-                                    <label>Sub categoría</label>
-                                    @Html.DropDownList("subCategoriaProducto", ViewBag.SubCategoriaListName as SelectList, "Seleccione sub categoria")
-                                </div>
+                                
                                 <div class="form-group">
                                         <label>Imagen</label>
-                                        <input class="form-control-file" name="foto_producto" type="file">
+                                        <input class="form-control-file" name="foto_producto" type="file" value="@Model.IMAGEN">
                                 </div>
                         </td>
                         

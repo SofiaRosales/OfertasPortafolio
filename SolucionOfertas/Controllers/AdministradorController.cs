@@ -23,6 +23,8 @@ namespace LoginOfertas3.Controllers
         {
             return View(datos.EMPRESA.ToList());
         }
+
+
         [HttpGet]
         public ActionResult Add_empresas()
         {

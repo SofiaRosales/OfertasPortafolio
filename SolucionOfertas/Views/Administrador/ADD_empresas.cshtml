@@ -11,68 +11,33 @@
     <form method="post"action="@Url.Action("Add_empresas", "Administrador")">
         <fieldset>
             <legend>Agregar empresa</legend>
+
+            <center>
+                <div class="form-group">
+                    <label accesskey="" style="text-align:left">Nombre empresa</label>
+                    <input class="form-control" name="nombre" aria-describedby="emailHelp" placeholder="Nombre empresa">
+                </div>
+                <div class="form-group">
+                    <label>RUT</label><br />
+                    <input class="form-controlser" name="rut" placeholder="11.111.111" style="width:42%"><label>-</label>
+                    <input class="form-controlser" name="dv" placeholder="1" style="width:7%">
+                </div>
+            </center>
             
-                <table width="80%">
-                    <tr>
-                        <td>
-                            <div class="form-group">
-                                <label accesskey="" style="text-align:left">Nombre empresa</label>
-                                <input class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Nombre empresa">
-                            </div>
-                            <div class="form-group">
-                                <label>RUT</label><br />
-                                <input class="form-controlser" id="rut" placeholder="11.111.111" style="width:41%"><label>-</label>
-                                <input class="form-controlser" id="rut" placeholder="1" style="width:7%">
-                            </div>
-                        </td>   
+            <table width="80%">
+                <tr>
 
-                        <td>
-                                <div class="form-group">
-                                    <label>Región</label>
-                                    <select class="custom-select">
-                                        <option selected="">Seleccione región</option>
-                                        <option value="region1">region1</option>
-                                        <option value="region2">regionTwo</option>
-                                        <option value="region3">regionThree</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Provincia</label>
-                                    <select class="custom-select">
-                                        <option selected="">Seleccione provincia</option>
-                                        <option value="Provincia1">ProvinciaOne</option>
-                                        <option value="Provincia2">ProvinciaTwo</option>
-                                        <option value="Provincia3">ProvinciaThree</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Comuna</label>
-                                    <select class="custom-select">
-                                        <option selected="">Seleccione comuna</option>
-                                        <option value="Comuna1">ComunaOne</option>
-                                        <option value="Comuna2">ComunaTwo</option>
-                                        <option value="Comuna3">ComunaThree</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>Dirección</label>
-                                    <input class="form-control" id="direccion" placeholder="Dirección"style="width:100%">
-                                </div>
-                        </td>
-                        
-                    </tr>
-
-                    <td><button type="button" class="btn btn-success" style="width:150px" onclick="location.href='@Url.Action("Adm_empresas","Administrador")'">Cancelar</button></td>
+                    @*<td><button type="button" class="btn btn-success" style="width:150px" onclick="location.href='@Url.Action("Adm_empresas","Administrador")'">Cancelar</button></td>*@
 
                     <td><button type="submit" class="btn btn-primary" style="width:150px; float:right">Agregar</button></td>
-                    
-                   
-                </table>
+
+                </tr>
+            </table>
 
 
-           
 
-</fieldset>
+
+        </fieldset>
     </form>
 
     

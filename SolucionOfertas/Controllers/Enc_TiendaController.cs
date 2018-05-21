@@ -33,6 +33,23 @@ namespace SolucionOfertas.Controllers
             entityOferta.ADD_PRODUCTO_PROCEDURE(nombre_prod, categoriaProducto, descripcion_prod, precio_prod, foto_prod);
             return RedirectToAction("Adm_producto");
         }
+        public ActionResult ADD_producto()
+        {
+
+
+            var getCategoriasList = entityOferta.CATEGORIA.ToList();
+            SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
+            ViewBag.categoriaListName = list;
+
+            var getSubCategoriasList = entityOferta.SUBCATE.ToList();
+            SelectList list2 = new SelectList(getSubCategoriasList, "ID", "NOMBRE");
+            ViewBag.SubCategoriaListName = list2;
+
+            return View();
+        }
+
+
+
         public ActionResult Adm_oferta()
         {
             return View();
@@ -51,20 +68,7 @@ namespace SolucionOfertas.Controllers
             return View();
         }
 
-        public ActionResult ADD_producto()
-        {
-            
-
-            var getCategoriasList = entityOferta.CATEGORIA.ToList();
-            SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
-            ViewBag.categoriaListName = list;
-
-            var getSubCategoriasList = entityOferta.SUBCATE.ToList();
-            SelectList list2 = new SelectList(getSubCategoriasList, "ID", "NOMBRE");
-            ViewBag.SubCategoriaListName = list2;
-
-            return View();
-        }
+        
 
         public ActionResult UP_oferta()
         {
@@ -78,8 +82,10 @@ namespace SolucionOfertas.Controllers
 
             return View();
         }
-        public ActionResult UP_producto(int id)
+        public ActionResult UP_producto(decimal id_producto)
         {
+
+            
             var getCategoriasList = entityOferta.CATEGORIA.ToList();
             SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
             ViewBag.categoriaListName = list;
@@ -88,7 +94,7 @@ namespace SolucionOfertas.Controllers
             SelectList list2 = new SelectList(getSubCategoriasList, "ID", "NOMBRE");
             ViewBag.SubCategoriaListName = list2;
 
-            return View();
+            return View(entityOferta.PRODUCTO.Where(x=>x.ID== id_producto).First());
         }
 
         // Cargar Select de ADD_producto
