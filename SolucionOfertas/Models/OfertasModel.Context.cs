@@ -38,6 +38,7 @@ namespace SolucionOfertas.Models
         public virtual DbSet<SUBCATE> SUBCATE { get; set; }
         public virtual DbSet<TIENDA> TIENDA { get; set; }
         public virtual DbSet<EMPRESA> EMPRESA { get; set; }
+        public virtual DbSet<PRODUCTO_VISTA> PRODUCTO_VISTA { get; set; }
     
         public virtual int COMUNA_PROCEDURE(string nOMBRE_COMUNA, string iD_PROVINCIA)
         {
@@ -402,6 +403,31 @@ namespace SolucionOfertas.Models
                 new ObjectParameter("ID_COMUNA", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UPDATE_PERSONA_PROCEDURE", nOMBRE_PERSONAParameter, aPELLIDO_PERSONAParameter, cORREO_PERSONAParameter, rUT_PERSONAParameter, iD_COMUNAParameter);
+        }
+    
+        public virtual int UP_PRODUCTO_PROCEDURE(Nullable<decimal> pRECIO_PRODUCTO, string nOMBRE_PRODUCTO, string dESCRIP_PRODUCTO, string iMAGEN_PRODUCTO, Nullable<decimal> iD_PRODUCTO)
+        {
+            var pRECIO_PRODUCTOParameter = pRECIO_PRODUCTO.HasValue ?
+                new ObjectParameter("PRECIO_PRODUCTO", pRECIO_PRODUCTO) :
+                new ObjectParameter("PRECIO_PRODUCTO", typeof(decimal));
+    
+            var nOMBRE_PRODUCTOParameter = nOMBRE_PRODUCTO != null ?
+                new ObjectParameter("NOMBRE_PRODUCTO", nOMBRE_PRODUCTO) :
+                new ObjectParameter("NOMBRE_PRODUCTO", typeof(string));
+    
+            var dESCRIP_PRODUCTOParameter = dESCRIP_PRODUCTO != null ?
+                new ObjectParameter("DESCRIP_PRODUCTO", dESCRIP_PRODUCTO) :
+                new ObjectParameter("DESCRIP_PRODUCTO", typeof(string));
+    
+            var iMAGEN_PRODUCTOParameter = iMAGEN_PRODUCTO != null ?
+                new ObjectParameter("IMAGEN_PRODUCTO", iMAGEN_PRODUCTO) :
+                new ObjectParameter("IMAGEN_PRODUCTO", typeof(string));
+    
+            var iD_PRODUCTOParameter = iD_PRODUCTO.HasValue ?
+                new ObjectParameter("ID_PRODUCTO", iD_PRODUCTO) :
+                new ObjectParameter("ID_PRODUCTO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UP_PRODUCTO_PROCEDURE", pRECIO_PRODUCTOParameter, nOMBRE_PRODUCTOParameter, dESCRIP_PRODUCTOParameter, iMAGEN_PRODUCTOParameter, iD_PRODUCTOParameter);
         }
     }
 }
