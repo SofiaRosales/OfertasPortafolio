@@ -29,7 +29,12 @@
                 <td>@item.ID</td>
                 <td>@item.NOMBRE</td>
                 <td>@item.RUT</td>
-                <td>@Html.ActionLink("Modificar", "UP_empresa", "Administrador") | @Html.ActionLink("Eliminar", "ADD_empresas", "Administrador")</td>
+                <td><form action="@Url.Action("UP_empresa", "Administrador")" method="post">
+
+                        <input type="hidden" name="id_empresa" value="@item.ID" />
+                        <input type="submit" name="btnModificar" />
+
+                    </form></td>
             </tr>
             }
         </table> 

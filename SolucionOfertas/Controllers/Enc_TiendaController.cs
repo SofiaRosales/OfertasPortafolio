@@ -25,7 +25,8 @@ namespace SolucionOfertas.Controllers
             
             return View(entityOferta.PRODUCTO.ToList());
         }
-
+        //Producto---------------------------------------------------------------------------------------------
+        //Add---------------------------------------------------------------------------------------------
         [HttpPost]
         public ActionResult Add_producto(string nombre_prod,decimal precio_prod,string descripcion_prod,decimal categoriaProducto,decimal subCategoriaProducto, string foto_prod)
         {
@@ -35,8 +36,6 @@ namespace SolucionOfertas.Controllers
         }
         public ActionResult ADD_producto()
         {
-
-
             var getCategoriasList = entityOferta.CATEGORIA.ToList();
             SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
             ViewBag.categoriaListName = list;
@@ -47,9 +46,24 @@ namespace SolucionOfertas.Controllers
 
             return View();
         }
+        //UP---------------------------------------------------------------------------------------------
+        [HttpPost]
+        public ActionResult Up_producto(decimal precio_prod, string nombre_prod, string descripcion_prod, string foto_prod, decimal id_producto)
+        {
 
+            entityOferta.UP_PRODUCTO_PROCEDURE(precio_prod, nombre_prod, descripcion_prod, foto_prod, id_producto);
+            return RedirectToAction("Adm_producto");
+        }
+        public ActionResult UP_producto(decimal id_producto)
+        {
+            var getCategoriasList = entityOferta.CATEGORIA.ToList();
+            SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
+            ViewBag.categoriaListName = list;
 
+            return View(entityOferta.PRODUCTO.Where(x => x.ID == id_producto).First());
+        }
 
+        //Oferta---------------------------------------------------------------------------------------------
         public ActionResult Adm_oferta()
         {
             return View();
@@ -82,20 +96,7 @@ namespace SolucionOfertas.Controllers
 
             return View();
         }
-        public ActionResult UP_producto(decimal id_producto)
-        {
-
-            
-            var getCategoriasList = entityOferta.CATEGORIA.ToList();
-            SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
-            ViewBag.categoriaListName = list;
-
-            var getSubCategoriasList = entityOferta.SUBCATE.ToList();
-            SelectList list2 = new SelectList(getSubCategoriasList, "ID", "NOMBRE");
-            ViewBag.SubCategoriaListName = list2;
-
-            return View(entityOferta.PRODUCTO.Where(x=>x.ID== id_producto).First());
-        }
+        
 
         // Cargar Select de ADD_producto
         //public JsonResult getcategorias()

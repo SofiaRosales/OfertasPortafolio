@@ -8,7 +8,7 @@
 <br />
 <br />
 
-    <form>
+    <form method="post" action="@Url.Action("Up_producto", "Enc_Tienda")">
         <fieldset>
             <legend>Modificar Producto</legend>
             
@@ -23,11 +23,11 @@
                             </div>
                             <div class="form-group">
                                 <label accesskey="" style="text-align:left">Precio ($x.xxx)</label>
-                                <input class="form-control" name="precio_prod" style="width:90%" value="@Model.PRECIO">
+                                <input      class="form-control" name="precio_prod" style="width:90%"                               value="@Model.PRECIO">
                             </div>
                             <div class="form-group">
                                 <label>Descripción</label><br />
-                                <textarea   class="form-control" name="descripcion_prod" rows="3"    style="width:90%" > @Model.DESCRIPCION</textarea> 
+                                <textarea   class="form-control" name="descripcion_prod" rows="3"    style="width:90%" >            @Model.DESCRIPCION</textarea> 
                             </div>
                         </td>   
 
@@ -39,7 +39,7 @@
                                 
                                 <div class="form-group">
                                         <label>Imagen</label>
-                                        <input class="form-control-file" name="foto_producto" type="file" value="@Model.IMAGEN">
+                                        <input class="form-control-file" name="foto_producto" type="file"                           value="@Model.IMAGEN">
                                 </div>
                         </td>
                         
@@ -52,7 +52,7 @@
                    
                 </table>
 
-
+            <input type="hidden" name="id_producto" value="@Model.ID" />
            
 
 </fieldset>

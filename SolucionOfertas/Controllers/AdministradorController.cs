@@ -42,9 +42,9 @@ namespace LoginOfertas3.Controllers
             //datos.ADD_EMPRESA_PROCEDURE(nombre_prod, 1, 0, descripcion_prod, precio_prod, "");
             return View();
         }
-        public ActionResult UP_empresa()
+        public ActionResult UP_empresa(decimal id_empresa)
         {
-            return View();
+            return View(datos.EMPRESA.Where(x => x.ID == id_empresa).First());
         }
         public ActionResult Adm_perfil()
         {
