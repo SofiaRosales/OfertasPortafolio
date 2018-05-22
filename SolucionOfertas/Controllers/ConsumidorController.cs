@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SolucionOfertas.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,11 @@ namespace LoginOfertas3.Controllers
 {
     public class ConsumidorController : Controller
     {
+        EntitiesOfertas entityOferta = new EntitiesOfertas();
         // GET: Consumidor :
         public ActionResult Index()
         {
-            return View();
+            return View(entityOferta.PRODUCTO.ToList());
         }
         public ActionResult Detalle_oferta()
         {

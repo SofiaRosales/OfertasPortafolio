@@ -19,13 +19,14 @@ namespace SolucionOfertas.Controllers
         }
 
         // Rutas
+        //Producto---------------------------------------------------------------------------------------------
+
         [HttpGet]
         public ActionResult Adm_producto()
         {
             
             return View(entityOferta.PRODUCTO.ToList());
         }
-        //Producto---------------------------------------------------------------------------------------------
         //Add---------------------------------------------------------------------------------------------
         [HttpPost]
         public ActionResult Add_producto(string nombre_prod,decimal precio_prod,string descripcion_prod,decimal categoriaProducto,decimal subCategoriaProducto, string foto_prod)
@@ -34,6 +35,7 @@ namespace SolucionOfertas.Controllers
             entityOferta.ADD_PRODUCTO_PROCEDURE(nombre_prod, categoriaProducto, descripcion_prod, precio_prod, foto_prod);
             return RedirectToAction("Adm_producto");
         }
+        
         public ActionResult ADD_producto()
         {
             var getCategoriasList = entityOferta.CATEGORIA.ToList();
@@ -54,6 +56,7 @@ namespace SolucionOfertas.Controllers
             entityOferta.UP_PRODUCTO_PROCEDURE(precio_prod, nombre_prod, descripcion_prod, foto_prod, id_producto);
             return RedirectToAction("Adm_producto");
         }
+        [HttpGet]
         public ActionResult UP_producto(decimal id_producto)
         {
             var getCategoriasList = entityOferta.CATEGORIA.ToList();
