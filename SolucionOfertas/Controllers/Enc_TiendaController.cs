@@ -50,10 +50,10 @@ namespace SolucionOfertas.Controllers
         }
         //UP---------------------------------------------------------------------------------------------
         [HttpPost]
-        public ActionResult Up_producto(decimal precio_prod, string nombre_prod, string descripcion_prod, string foto_prod, decimal id_producto, decimal categoria)
+        public ActionResult Up_producto(decimal precio_prod, string nombre_prod, string descripcion_prod, string foto_prod, decimal id_producto, decimal categoriaProducto)
         {
 
-            entityOferta.UP_PRODUCTO_PROCEDURE(precio_prod, nombre_prod,categoria, descripcion_prod, foto_prod, id_producto);
+            entityOferta.UP_PRODUCTO_PROCEDURE(precio_prod, nombre_prod, categoriaProducto, descripcion_prod, foto_prod, id_producto);
             return RedirectToAction("Adm_producto");
         }
         [HttpGet]
