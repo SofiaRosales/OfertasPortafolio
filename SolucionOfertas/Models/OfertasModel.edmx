@@ -282,12 +282,10 @@ advertencia 6002: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
           <Parameter Name="RUT_EMPRESA" Type="varchar2" Mode="In" />
         </Function>
         <Function Name="ADD_OFERTA_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
-          <Parameter Name="NOMBRE_OFERTA" Type="varchar2" Mode="In" />
           <Parameter Name="PRODUCTO_OFERTA" Type="number" Mode="In" />
           <Parameter Name="ESTADO" Type="char" Mode="In" />
           <Parameter Name="DSCTO" Type="number" Mode="In" />
           <Parameter Name="STOCK" Type="number" Mode="In" />
-          <Parameter Name="PRECIO_DESCUENTO" Type="number" Mode="In" />
         </Function>
         <Function Name="ADD_PERFIL_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="PERFIL_NOMBRE" Type="varchar2" Mode="In" />
@@ -336,6 +334,7 @@ advertencia 6002: La tabla o vista 'DBOFERTAS.PRODUCTO_VISTA' no tiene definida 
         <Function Name="UP_PRODUCTO_PROCEDURE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DBOFERTAS">
           <Parameter Name="PRECIO_PRODUCTO" Type="number" Mode="In" />
           <Parameter Name="NOMBRE_PRODUCTO" Type="varchar2" Mode="In" />
+          <Parameter Name="CATEGORIA_PRODUCTO" Type="number" Mode="In" />
           <Parameter Name="DESCRIP_PRODUCTO" Type="varchar2" Mode="In" />
           <Parameter Name="IMAGEN_PRODUCTO" Type="varchar2" Mode="In" />
           <Parameter Name="ID_PRODUCTO" Type="number" Mode="In" />
@@ -525,12 +524,10 @@ FROM "DBOFERTAS"."PRODUCTO_VISTA" "PRODUCTO_VISTA"</DefiningQuery>
           </FunctionImport>
           <EntitySet Name="PRODUCTO_VISTA" EntityType="ModelOfertas.PRODUCTO_VISTA" />
           <FunctionImport Name="ADD_OFERTA_PROCEDURE">
-            <Parameter Name="NOMBRE_OFERTA" Mode="In" Type="String" />
             <Parameter Name="PRODUCTO_OFERTA" Mode="In" Type="Decimal" />
             <Parameter Name="ESTADO" Mode="In" Type="String" />
             <Parameter Name="DSCTO" Mode="In" Type="Decimal" />
             <Parameter Name="STOCK" Mode="In" Type="Decimal" />
-            <Parameter Name="PRECIO_DESCUENTO" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="ADD_CATEGORIA_PROCEDURE">
           <Parameter Name="NOMBRE_CATEGORIA" Mode="In" Type="String" />
@@ -572,6 +569,7 @@ FROM "DBOFERTAS"."PRODUCTO_VISTA" "PRODUCTO_VISTA"</DefiningQuery>
           <FunctionImport Name="UP_PRODUCTO_PROCEDURE">
             <Parameter Name="PRECIO_PRODUCTO" Mode="In" Type="Decimal" />
             <Parameter Name="NOMBRE_PRODUCTO" Mode="In" Type="String" />
+            <Parameter Name="CATEGORIA_PRODUCTO" Mode="In" Type="Decimal" />
             <Parameter Name="DESCRIP_PRODUCTO" Mode="In" Type="String" />
             <Parameter Name="IMAGEN_PRODUCTO" Mode="In" Type="String" />
             <Parameter Name="ID_PRODUCTO" Mode="In" Type="Decimal" />
