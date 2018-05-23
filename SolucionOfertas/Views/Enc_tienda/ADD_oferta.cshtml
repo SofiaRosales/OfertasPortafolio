@@ -1,13 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "Agregar producto";
+    ViewBag.Title = "Agregar oferta";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <br />
 <br />
 <br />
 
-    <form method="post" action="@Url.Action("Metodo", "Controlador")">
+    <form method="post" action="@Url.Action("ADD_oferta", "Enc_tienda")">
         
         <fieldset>
             <legend>Agregar oferta</legend>
@@ -21,9 +21,10 @@
                                 @Html.DropDownList("categoriaOferta", ViewBag.categoriaListName as SelectList, "Seleccione categoría")
                             </div>
                             <div class="form-group">
-                                <label>Sub categoría</label>
+                                <label>Producto</label>
                                 @* primer campo es name "categoriaOferta" *@
-                                @Html.DropDownList("subCategoriaOferta", ViewBag.SubCategoriaListName as SelectList, "Seleccione sub categoria")
+                                @Html.DropDownList("productos", ViewBag.ProductoListName as SelectList, "Seleccione producto")
+                                <input type="hidden" name="id_producto" value="" />
                             </div>
                             <div class="form-group">
                                 <label accesskey="" style="text-align:left">Precio</label>
@@ -35,11 +36,15 @@
                         <td>
                             <div class="form-group">
                                 <label accesskey="" style="text-align:left">Procentaje de descuento </label>
-                                <input class="form-control" name="porcentaje_desc" style="width:90%" type="number">
+                                <input class="form-control" name="por_descuento" style="width:90%" type="number">
                             </div>
                             <div class="form-group">
                                 <label accesskey="" style="text-align:left">Precio Oferta</label>
-                                <input class="form-control" name="precio_prod" style="width:90%" disabled min="5" max="90">
+                                <input class="form-control" name="pre_descuento" style="width:90%" disabled min="5" max="90">
+                            </div>
+                            <div class="form-group">
+                                <label accesskey="" style="text-align:left">Stock </label>
+                                <input class="form-control" name="stock" style="width:90%" type="number">
                             </div>
                             <div class="form-group">
                                 <label>Imagen</label>
@@ -48,7 +53,7 @@
                         </td>   
                     </tr>
 
-                    <td><button type="button" class="btn btn-success" style="width:150px" onclick="location.href='@Url.Action("Adm_empresas","Administrador")'">Cancelar</button></td>
+                    <td><button type="button" class="btn btn-success" style="width:150px" onclick="location.href='@Url.Action("Adm_oferta","Enc_tienda")'">Cancelar</button></td>
 
                     <td><button type="submit" class="btn btn-primary" style="width:150px; float:right">Agregar</button></td>
                     
