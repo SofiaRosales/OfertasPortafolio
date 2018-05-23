@@ -252,12 +252,8 @@ namespace SolucionOfertas.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_TIENDA_PROCEDURE", nOMBRE_TIENDAParameter, cALLE_TIENDAParameter, nRO_TIENDAParameter, eMPRESA_TIENDAParameter, cOMUNA_TIENDAParameter);
         }
     
-        public virtual int ADD_OFERTA_PROCEDURE(string nOMBRE_OFERTA, Nullable<decimal> pRODUCTO_OFERTA, string eSTADO, Nullable<decimal> dSCTO, Nullable<decimal> sTOCK, Nullable<decimal> pRECIO_DESCUENTO)
+        public virtual int ADD_OFERTA_PROCEDURE(Nullable<decimal> pRODUCTO_OFERTA, string eSTADO, Nullable<decimal> dSCTO, Nullable<decimal> sTOCK)
         {
-            var nOMBRE_OFERTAParameter = nOMBRE_OFERTA != null ?
-                new ObjectParameter("NOMBRE_OFERTA", nOMBRE_OFERTA) :
-                new ObjectParameter("NOMBRE_OFERTA", typeof(string));
-    
             var pRODUCTO_OFERTAParameter = pRODUCTO_OFERTA.HasValue ?
                 new ObjectParameter("PRODUCTO_OFERTA", pRODUCTO_OFERTA) :
                 new ObjectParameter("PRODUCTO_OFERTA", typeof(decimal));
@@ -274,11 +270,7 @@ namespace SolucionOfertas.Models
                 new ObjectParameter("STOCK", sTOCK) :
                 new ObjectParameter("STOCK", typeof(decimal));
     
-            var pRECIO_DESCUENTOParameter = pRECIO_DESCUENTO.HasValue ?
-                new ObjectParameter("PRECIO_DESCUENTO", pRECIO_DESCUENTO) :
-                new ObjectParameter("PRECIO_DESCUENTO", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_OFERTA_PROCEDURE", nOMBRE_OFERTAParameter, pRODUCTO_OFERTAParameter, eSTADOParameter, dSCTOParameter, sTOCKParameter, pRECIO_DESCUENTOParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ADD_OFERTA_PROCEDURE", pRODUCTO_OFERTAParameter, eSTADOParameter, dSCTOParameter, sTOCKParameter);
         }
     
         public virtual int ADD_CATEGORIA_PROCEDURE(string nOMBRE_CATEGORIA)
@@ -405,7 +397,7 @@ namespace SolucionOfertas.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UPDATE_PERSONA_PROCEDURE", nOMBRE_PERSONAParameter, aPELLIDO_PERSONAParameter, cORREO_PERSONAParameter, rUT_PERSONAParameter, iD_COMUNAParameter);
         }
     
-        public virtual int UP_PRODUCTO_PROCEDURE(Nullable<decimal> pRECIO_PRODUCTO, string nOMBRE_PRODUCTO, string dESCRIP_PRODUCTO, string iMAGEN_PRODUCTO, Nullable<decimal> iD_PRODUCTO)
+        public virtual int UP_PRODUCTO_PROCEDURE(Nullable<decimal> pRECIO_PRODUCTO, string nOMBRE_PRODUCTO, Nullable<decimal> cATEGORIA_PRODUCTO, string dESCRIP_PRODUCTO, string iMAGEN_PRODUCTO, Nullable<decimal> iD_PRODUCTO)
         {
             var pRECIO_PRODUCTOParameter = pRECIO_PRODUCTO.HasValue ?
                 new ObjectParameter("PRECIO_PRODUCTO", pRECIO_PRODUCTO) :
@@ -414,6 +406,10 @@ namespace SolucionOfertas.Models
             var nOMBRE_PRODUCTOParameter = nOMBRE_PRODUCTO != null ?
                 new ObjectParameter("NOMBRE_PRODUCTO", nOMBRE_PRODUCTO) :
                 new ObjectParameter("NOMBRE_PRODUCTO", typeof(string));
+    
+            var cATEGORIA_PRODUCTOParameter = cATEGORIA_PRODUCTO.HasValue ?
+                new ObjectParameter("CATEGORIA_PRODUCTO", cATEGORIA_PRODUCTO) :
+                new ObjectParameter("CATEGORIA_PRODUCTO", typeof(decimal));
     
             var dESCRIP_PRODUCTOParameter = dESCRIP_PRODUCTO != null ?
                 new ObjectParameter("DESCRIP_PRODUCTO", dESCRIP_PRODUCTO) :
@@ -427,7 +423,7 @@ namespace SolucionOfertas.Models
                 new ObjectParameter("ID_PRODUCTO", iD_PRODUCTO) :
                 new ObjectParameter("ID_PRODUCTO", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UP_PRODUCTO_PROCEDURE", pRECIO_PRODUCTOParameter, nOMBRE_PRODUCTOParameter, dESCRIP_PRODUCTOParameter, iMAGEN_PRODUCTOParameter, iD_PRODUCTOParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UP_PRODUCTO_PROCEDURE", pRECIO_PRODUCTOParameter, nOMBRE_PRODUCTOParameter, cATEGORIA_PRODUCTOParameter, dESCRIP_PRODUCTOParameter, iMAGEN_PRODUCTOParameter, iD_PRODUCTOParameter);
         }
     }
 }
