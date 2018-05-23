@@ -48,6 +48,7 @@ namespace SolucionOfertas.Controllers
 
             return View();
         }
+        
         //UP---------------------------------------------------------------------------------------------
         [HttpPost]
         public ActionResult Up_producto(decimal precio_prod, string nombre_prod, string descripcion_prod, string foto_prod, decimal id_producto, decimal categoriaProducto)
@@ -69,7 +70,14 @@ namespace SolucionOfertas.Controllers
         //Oferta---------------------------------------------------------------------------------------------
         public ActionResult Adm_oferta()
         {
-            return View();
+            return View(entityOferta.OFERTA.ToList());
+        }
+        //Add---------------------------------------------------------------------------------------------
+        [HttpPost]
+        public ActionResult Add_oferta(string productos, decimal id_producto, string est_oferta, decimal por_descuento, decimal stock, decimal pre_descuento)
+        {
+            entityOferta.ADD_OFERTA_PROCEDURE(productos, id_producto, est_oferta, por_descuento, stock, pre_descuento);
+            return RedirectToAction("Adm_oferta");
         }
         public ActionResult ADD_oferta()
         {
@@ -78,9 +86,9 @@ namespace SolucionOfertas.Controllers
             SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
             ViewBag.categoriaListName = list;
 
-            var getSubCategoriasList = entityOferta.SUBCATE.ToList();
-            SelectList list2 = new SelectList(getSubCategoriasList, "ID", "NOMBRE");
-            ViewBag.SubCategoriaListName = list2;
+            var getProductosList = entityOferta.PRODUCTO.ToList();
+            SelectList list2 = new SelectList(getProductosList, "ID", "NOMBRE");
+            ViewBag.ProductoListName = list2;
 
             return View();
         }
