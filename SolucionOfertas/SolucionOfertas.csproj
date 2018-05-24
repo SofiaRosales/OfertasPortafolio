@@ -235,9 +235,6 @@
     <Compile Include="Models\PRODUCTO.cs">
       <DependentUpon>OfertasModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\PRODUCTO_VISTA.cs">
-      <DependentUpon>OfertasModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\PROVINCIA.cs">
       <DependentUpon>OfertasModel.tt</DependentUpon>
     </Compile>
@@ -349,6 +346,7 @@
     <Content Include="Views\Enc_tienda\Adm_producto.cshtml" />
     <Content Include="Views\Enc_tienda\UP_producto.cshtml" />
     <Content Include="Views\Enc_tienda\UP_oferta.cshtml" />
+    <Content Include="Views\Consumidor\Cupon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
