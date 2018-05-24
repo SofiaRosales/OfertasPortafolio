@@ -39,6 +39,7 @@ namespace SolucionOfertas.Models
         public virtual DbSet<TIENDA> TIENDA { get; set; }
         public virtual DbSet<EMPRESA> EMPRESA { get; set; }
         public virtual DbSet<PRODUCTO_VISTA> PRODUCTO_VISTA { get; set; }
+        public virtual DbSet<MOSTRAROFERTA_VISTA> MOSTRAROFERTA_VISTA { get; set; }
     
         public virtual int COMUNA_PROCEDURE(string nOMBRE_COMUNA, string iD_PROVINCIA)
         {
