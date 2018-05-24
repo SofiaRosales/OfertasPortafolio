@@ -12,11 +12,18 @@ namespace SolucionOfertas.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MOSTRAROFERTA_VISTA
+    public partial class DESCUENTO
     {
-        public string NOMBRE { get; set; }
-        public string TIENDA { get; set; }
-        public decimal PRECIO { get; set; }
-        public decimal DSCTO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DESCUENTO()
+        {
+            this.CUPON = new HashSet<CUPON>();
+        }
+    
+        public decimal ID { get; set; }
+        public decimal PORCENTAJE { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CUPON> CUPON { get; set; }
     }
 }

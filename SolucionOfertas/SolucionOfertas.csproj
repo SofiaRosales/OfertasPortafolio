@@ -194,14 +194,17 @@
     <Compile Include="Models\COMUNA.cs">
       <DependentUpon>OfertasModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CUPON.cs">
+      <DependentUpon>OfertasModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DESCUENTO.cs">
+      <DependentUpon>OfertasModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\EMPRESA.cs">
       <DependentUpon>OfertasModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MOSTRAROFERTA_VISTA.cs">
-      <DependentUpon>OfertasModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\OFERTA.cs">
       <DependentUpon>OfertasModel.tt</DependentUpon>
     </Compile>
@@ -343,6 +346,7 @@
     <Content Include="Views\Enc_tienda\Adm_producto.cshtml" />
     <Content Include="Views\Enc_tienda\UP_producto.cshtml" />
     <Content Include="Views\Enc_tienda\UP_oferta.cshtml" />
+    <Content Include="Views\Consumidor\Cupon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
