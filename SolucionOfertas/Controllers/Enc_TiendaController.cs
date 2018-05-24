@@ -74,17 +74,13 @@ namespace SolucionOfertas.Controllers
         }
         //Add---------------------------------------------------------------------------------------------
         [HttpPost]
-        public ActionResult Add_oferta(decimal id_producto, decimal por_descuento, decimal stock, decimal pre_descuento,string estado)
+        public ActionResult Add_oferta( decimal por_descuento, decimal stock, decimal pre_descuento,string estado, decimal dd_producto)
         {
-            entityOferta.ADD_OFERTA_PROCEDURE(id_producto, estado,por_descuento,stock);
+            entityOferta.ADD_OFERTA_PROCEDURE(dd_producto, estado,por_descuento,stock);
             return RedirectToAction("Adm_oferta");
         }
         public ActionResult ADD_oferta()
         {
-
-            var getCategoriasList = entityOferta.CATEGORIA.ToList();
-            SelectList list = new SelectList(getCategoriasList, "ID", "NOMBRE");
-            ViewBag.categoriaListName = list;
 
             var getProductosList = entityOferta.PRODUCTO.ToList();
             SelectList list2 = new SelectList(getProductosList, "ID", "NOMBRE");
