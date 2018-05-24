@@ -35,26 +35,26 @@
             </tr>
             @foreach (var item in Model)
             {
-            <tr>
+                <tr>
                 
-                <td>@item. </td>
+                    <td>@item.ID </td>
                
-                <td>@item.NOMBRE</td>
+                    <td>@item.NOMBRE</td>
                 
-                <td>@item.PRECIO</td>
+                    <td>@item.PRECIO</td>
                 
-                <td>@item.DESCRIPCION</td>
+                    <td>@item.DESCRIPCION</td>
                 
-                <td>@item.IMAGEN</td>
+                    <td>@item.IMAGEN</td>
                                                
-                <td><form action="@Url.Action("UP_producto", "Enc_Tienda")" method="get" >
+                    <td><form action="@Url.Action("UP_producto", "Enc_Tienda")" method="get" >
                     
-                        <input type="hidden" name="id_producto" value="@item.ID" />
-                        <input type="submit" name="btnModificar" value="Modificar"/>
+                            <input type="hidden" name="id_producto" value="@item.ID" />
+                            <input type="submit" name="btnModificar" value="Modificar"/>
 
-                    </form>
+                        </form>
                 
-            </tr>
+                </tr>
 
             }
         </table>
@@ -62,6 +62,7 @@
         
     </center>
     
+    <button type="button" class="btn btn-success" style="width:150px" onclick="location.href='@Url.Action("Index","Enc_tienda")'">Volver</button>
     
 </div> 
 

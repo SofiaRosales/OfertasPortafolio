@@ -24,19 +24,18 @@
 
                 <th>ID</th>
 
-                <th>Nombre</th>
+                <th>Producto</th>
 
-                <th>RUT</th>
+                <th>Precio Oferta</th>
 
-                <th>Región</th>
+                <th>Stock</th>
 
-                <th>Provincia</th>
+                <th>Porcentaje de dscto</th>
 
-                <th>Comuna</th>
-
-                <th>Dirección</th>
+                <th>Estado</th>
 
                 <th>Acción</th>
+
 
             </tr>
             @foreach (var item in Model)
@@ -45,28 +44,32 @@
 
                     <td>@item.ID</td>
 
-                    <td>@item.nombre</td>
+                    <td>@item.PRODUCTO_ID</td>
 
-                    <td>50</td>
+                    <td>@item.PRECIO_DSCTO</td>
 
-                    <td>Jill</td>
+                    <td>@item.STOCK</td>
 
-                    <td>Smith</td>
+                    <td>@item.DSCTO</td>
 
-                    <td>50</td>
+                    <td>@item.ESTADO</td>
 
-                    <td>Jill</td>
+                    <td><form action="@Url.Action("UP_oferta", "Enc_Tienda")" method="get">
 
-                    <td>@Html.ActionLink("Modificar", "UP_empresa", "Administrador") | @Html.ActionLink("Eliminar", "ADD_empresa", "Administrador")</td>
+                            <input type="hidden" name="id_oferta" value="@item.ID" />
+                            <input type="submit" name="btnModificar" value="Modificar" />
+
+                        </form></td>
 
                 </tr>
-            ]
+            }
 
         </table>
 
 
     </center>
 
+    <button type="button" class="btn btn-success" style="width:150px" onclick="location.href='@Url.Action("Index","Enc_tienda")'">Volver</button>
 
 </div>
 

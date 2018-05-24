@@ -74,9 +74,9 @@ namespace SolucionOfertas.Controllers
         }
         //Add---------------------------------------------------------------------------------------------
         [HttpPost]
-        public ActionResult Add_oferta(string productos, decimal id_producto, string est_oferta, decimal por_descuento, decimal stock, decimal pre_descuento)
+        public ActionResult Add_oferta(decimal id_producto, decimal por_descuento, decimal stock, decimal pre_descuento,string estado)
         {
-            entityOferta.ADD_OFERTA_PROCEDURE(productos, id_producto, est_oferta, por_descuento, stock, pre_descuento);
+            entityOferta.ADD_OFERTA_PROCEDURE(id_producto, estado,por_descuento,stock);
             return RedirectToAction("Adm_oferta");
         }
         public ActionResult ADD_oferta()
