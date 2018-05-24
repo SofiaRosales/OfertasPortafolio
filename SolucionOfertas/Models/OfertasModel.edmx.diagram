@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6491c4862cc546988d1eb74e37948a43" Name="Diagram1" ZoomLevel="81">
+      <Diagram DiagramId="6491c4862cc546988d1eb74e37948a43" Name="Diagram1" ZoomLevel="44">
         <EntityTypeShape EntityType="ModelOfertas.CATEGORIA" Width="1.875" PointX="12.5" PointY="2.375" />
         <EntityTypeShape EntityType="ModelOfertas.COMUNA" Width="1.5" PointX="10.25" PointY="7.5" />
         <EntityTypeShape EntityType="ModelOfertas.OFERTA" Width="1.5" PointX="9.625" PointY="3.875" />
         <EntityTypeShape EntityType="ModelOfertas.PERFIL" Width="1.5" PointX="20.75" PointY="9.125" />
         <EntityTypeShape EntityType="ModelOfertas.PERSONA" Width="1.5" PointX="14.25" PointY="8.375" />
-        <EntityTypeShape EntityType="ModelOfertas.PRODUCTO" Width="1.5" PointX="7.375" PointY="3.625" />
+        <EntityTypeShape EntityType="ModelOfertas.PRODUCTO" Width="1.5" PointX="7.5" PointY="4.5" />
         <EntityTypeShape EntityType="ModelOfertas.PROVINCIA" Width="1.5" PointX="4.875" PointY="8.375" />
         <EntityTypeShape EntityType="ModelOfertas.REGION" Width="1.5" PointX="1.5" PointY="8.625" />
         <EntityTypeShape EntityType="ModelOfertas.SUBCATE" Width="1.5" PointX="17" PointY="3.625" />
-        <EntityTypeShape EntityType="ModelOfertas.TIENDA" Width="1.5" PointX="5.125" PointY="1" />
+        <EntityTypeShape EntityType="ModelOfertas.TIENDA" Width="1.5" PointX="6" PointY="0.5" />
         <AssociationConnector Association="ModelOfertas.CATEGORIA_SUBCATE_FK" />
         <AssociationConnector Association="ModelOfertas.PRODUCTO_CATEGORIA_FK" />
         <AssociationConnector Association="ModelOfertas.COMUNA_PROVINCIA_FK" />
@@ -25,8 +25,9 @@
         <AssociationConnector Association="ModelOfertas.PROVINCIA_REGION_FK" />
         <AssociationConnector Association="ModelOfertas.PERFIL_PERSONA" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="ModelOfertas.EMPRESA" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="ModelOfertas.EMPRESA" Width="1.5" PointX="2.375" PointY="0.875" />
         <AssociationConnector Association="ModelOfertas.TIENDA_EMPRESA_FK" />
+        <EntityTypeShape EntityType="ModelOfertas.MOSTRAROFERTA_VISTA" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
