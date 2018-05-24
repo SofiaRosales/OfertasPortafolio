@@ -343,6 +343,7 @@
     <Content Include="Views\Enc_tienda\Adm_producto.cshtml" />
     <Content Include="Views\Enc_tienda\UP_producto.cshtml" />
     <Content Include="Views\Enc_tienda\UP_oferta.cshtml" />
+    <Content Include="Views\Consumidor\Cupon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
