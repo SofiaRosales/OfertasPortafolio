@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Cupon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<meta charset="UTF-8">
+<br />
+<br />
+<br />
+<br />
+
+
+<center>
+    <h2>Cupon Descuento</h2>
+    <script src="../dist/JsBarcode.all.js"></script>
+    <script>
+		Number.prototype.zeroPadding = function(){
+			var ret = "" + this.valueOf();
+			return ret.length == 1 ? "0" + ret : ret;
+		};
+    </script>
+    <div>
+        <img id="barcode" />
+        <script>JsBarcode("#barcode", "9780199532179", {
+			format:"EAN13",
+			displayValue:true,
+			fontSize:20
+		});</script>
+    </div>
+    <br/>
+    <button type="button" class="btn btn-primary btn-lg">Descargar cupón</button>
+</center>
+
