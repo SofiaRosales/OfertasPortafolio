@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6491c4862cc546988d1eb74e37948a43" Name="Diagram1" ZoomLevel="33">
+      <Diagram DiagramId="6491c4862cc546988d1eb74e37948a43" Name="Diagram1" ZoomLevel="42">
         <EntityTypeShape EntityType="ModelOfertas.CATEGORIA" Width="1.875" PointX="12.5" PointY="2.375" />
         <EntityTypeShape EntityType="ModelOfertas.COMUNA" Width="1.5" PointX="10.25" PointY="7.5" />
         <EntityTypeShape EntityType="ModelOfertas.OFERTA" Width="1.5" PointX="9.625" PointY="3.875" />
@@ -27,6 +27,9 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="ModelOfertas.EMPRESA" Width="1.5" PointX="0.75" PointY="0.875" />
         <AssociationConnector Association="ModelOfertas.TIENDA_EMPRESA_FK" />
+        <EntityTypeShape EntityType="ModelOfertas.CUPON" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="ModelOfertas.DESCUENTO" Width="1.5" PointX="0.75" PointY="5" />
+        <AssociationConnector Association="ModelOfertas.CUPON_DESCUENTO_FK" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
