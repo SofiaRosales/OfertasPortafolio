@@ -12,11 +12,13 @@ namespace SolucionOfertas.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MOSTRAROFERTA_VISTA
+    public partial class PERFIL_PERSONA
     {
-        public string NOMBRE { get; set; }
-        public string TIENDA { get; set; }
-        public decimal PRECIO { get; set; }
-        public decimal DSCTO { get; set; }
+        public string ID_PERSONA { get; set; }
+        public string ID_PERFIL { get; set; }
+        public Nullable<decimal> ID { get; set; }
+    
+        public virtual PERFIL PERFIL { get; set; }
+        public virtual PERSONA PERSONA { get; set; }
     }
 }

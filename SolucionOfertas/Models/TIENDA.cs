@@ -28,8 +28,8 @@ namespace SolucionOfertas.Models
         public Nullable<decimal> NRO { get; set; }
     
         public virtual COMUNA COMUNA { get; set; }
+        public virtual EMPRESA EMPRESA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PRODUCTO> PRODUCTO { get; set; }
-        public virtual EMPRESA EMPRESA { get; set; }
     }
 }

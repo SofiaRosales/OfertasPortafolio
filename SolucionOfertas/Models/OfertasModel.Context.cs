@@ -29,18 +29,18 @@ namespace SolucionOfertas.Models
     
         public virtual DbSet<CATEGORIA> CATEGORIA { get; set; }
         public virtual DbSet<COMUNA> COMUNA { get; set; }
+        public virtual DbSet<CUPON> CUPON { get; set; }
+        public virtual DbSet<DESCUENTO> DESCUENTO { get; set; }
+        public virtual DbSet<EMPRESA> EMPRESA { get; set; }
         public virtual DbSet<OFERTA> OFERTA { get; set; }
         public virtual DbSet<PERFIL> PERFIL { get; set; }
+        public virtual DbSet<PERFIL_PERSONA> PERFIL_PERSONA { get; set; }
         public virtual DbSet<PERSONA> PERSONA { get; set; }
         public virtual DbSet<PRODUCTO> PRODUCTO { get; set; }
         public virtual DbSet<PROVINCIA> PROVINCIA { get; set; }
         public virtual DbSet<REGION> REGION { get; set; }
         public virtual DbSet<SUBCATE> SUBCATE { get; set; }
         public virtual DbSet<TIENDA> TIENDA { get; set; }
-        public virtual DbSet<EMPRESA> EMPRESA { get; set; }
-        public virtual DbSet<CUPON> CUPON { get; set; }
-        public virtual DbSet<DESCUENTO> DESCUENTO { get; set; }
-        public virtual DbSet<MOSTRAROFERTA_VISTA> MOSTRAROFERTA_VISTA { get; set; }
     
         public virtual int COMUNA_PROCEDURE(string nOMBRE_COMUNA, string iD_PROVINCIA)
         {

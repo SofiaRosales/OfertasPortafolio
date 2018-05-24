@@ -137,20 +137,6 @@
           <Property Name="CALLE" Type="varchar2" MaxLength="40" />
           <Property Name="NRO" Type="number" Precision="38" Scale="0" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'DBOFERTAS.MOSTRAROFERTA_VISTA' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
-        <EntityType Name="MOSTRAROFERTA_VISTA">
-          <Key>
-            <PropertyRef Name="NOMBRE" />
-            <PropertyRef Name="TIENDA" />
-            <PropertyRef Name="PRECIO" />
-            <PropertyRef Name="DSCTO" />
-          </Key>
-          <Property Name="NOMBRE" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="TIENDA" Type="varchar2" MaxLength="40" Nullable="false" />
-          <Property Name="PRECIO" Type="number" Precision="38" Scale="0" Nullable="false" />
-          <Property Name="DSCTO" Type="number" Precision="38" Scale="0" Nullable="false" />
-        </EntityType>
         <Association Name="CATEGORIA_SUBCATE_FK">
           <End Role="CATEGORIA" Type="Self.CATEGORIA" Multiplicity="1" />
           <End Role="SUBCATE" Type="Self.SUBCATE" Multiplicity="*" />
@@ -383,14 +369,6 @@ advertencia 6002: La tabla o vista 'DBOFERTAS.MOSTRAROFERTA_VISTA' no tiene defi
           <EntitySet Name="REGION" EntityType="Self.REGION" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="SUBCATE" EntityType="Self.SUBCATE" Schema="DBOFERTAS" store:Type="Tables" />
           <EntitySet Name="TIENDA" EntityType="Self.TIENDA" Schema="DBOFERTAS" store:Type="Tables" />
-          <EntitySet Name="MOSTRAROFERTA_VISTA" EntityType="Self.MOSTRAROFERTA_VISTA" store:Type="Views" store:Schema="DBOFERTAS">
-            <DefiningQuery>SELECT 
-"MOSTRAROFERTA_VISTA"."NOMBRE" AS "NOMBRE", 
-"MOSTRAROFERTA_VISTA"."TIENDA" AS "TIENDA", 
-"MOSTRAROFERTA_VISTA"."PRECIO" AS "PRECIO", 
-"MOSTRAROFERTA_VISTA"."DSCTO" AS "DSCTO"
-FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="CATEGORIA_SUBCATE_FK" Association="Self.CATEGORIA_SUBCATE_FK">
             <End Role="CATEGORIA" EntitySet="CATEGORIA" />
             <End Role="SUBCATE" EntitySet="SUBCATE" />
@@ -474,52 +452,6 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
             <Parameter Name="PERSONA_APELLIDO" Mode="In" Type="String" />
             <Parameter Name="PERSONA_COMUNA" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="CATEGORIA" EntityType="ModelOfertas.CATEGORIA" />
-          <EntitySet Name="COMUNA" EntityType="ModelOfertas.COMUNA" />
-          <EntitySet Name="OFERTA" EntityType="ModelOfertas.OFERTA" />
-          <EntitySet Name="PERFIL" EntityType="ModelOfertas.PERFIL" />
-          <EntitySet Name="PERSONA" EntityType="ModelOfertas.PERSONA" />
-          <EntitySet Name="PRODUCTO" EntityType="ModelOfertas.PRODUCTO" />
-          <EntitySet Name="PROVINCIA" EntityType="ModelOfertas.PROVINCIA" />
-          <EntitySet Name="REGION" EntityType="ModelOfertas.REGION" />
-          <EntitySet Name="SUBCATE" EntityType="ModelOfertas.SUBCATE" />
-          <EntitySet Name="TIENDA" EntityType="ModelOfertas.TIENDA" />
-          <AssociationSet Name="CATEGORIA_SUBCATE_FK" Association="ModelOfertas.CATEGORIA_SUBCATE_FK">
-            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
-            <End Role="SUBCATE" EntitySet="SUBCATE" />
-          </AssociationSet>
-          <AssociationSet Name="PRODUCTO_CATEGORIA_FK" Association="ModelOfertas.PRODUCTO_CATEGORIA_FK">
-            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-          </AssociationSet>
-          <AssociationSet Name="COMUNA_PROVINCIA_FK" Association="ModelOfertas.COMUNA_PROVINCIA_FK">
-            <End Role="PROVINCIA" EntitySet="PROVINCIA" />
-            <End Role="COMUNA" EntitySet="COMUNA" />
-          </AssociationSet>
-          <AssociationSet Name="PERSONA_COMUNA_FK" Association="ModelOfertas.PERSONA_COMUNA_FK">
-            <End Role="COMUNA" EntitySet="COMUNA" />
-            <End Role="PERSONA" EntitySet="PERSONA" />
-          </AssociationSet>
-          <AssociationSet Name="TIENDA_COMUNA_FK" Association="ModelOfertas.TIENDA_COMUNA_FK">
-            <End Role="COMUNA" EntitySet="COMUNA" />
-            <End Role="TIENDA" EntitySet="TIENDA" />
-          </AssociationSet>
-          <AssociationSet Name="OFERTA_PRODUCTO_FK" Association="ModelOfertas.OFERTA_PRODUCTO_FK">
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-            <End Role="OFERTA" EntitySet="OFERTA" />
-          </AssociationSet>
-          <AssociationSet Name="PRODUCTO_TIENDA_FK" Association="ModelOfertas.PRODUCTO_TIENDA_FK">
-            <End Role="TIENDA" EntitySet="TIENDA" />
-            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
-          </AssociationSet>
-          <AssociationSet Name="PROVINCIA_REGION_FK" Association="ModelOfertas.PROVINCIA_REGION_FK">
-            <End Role="REGION" EntitySet="REGION" />
-            <End Role="PROVINCIA" EntitySet="PROVINCIA" />
-          </AssociationSet>
-          <AssociationSet Name="PERFIL_PERSONA" Association="ModelOfertas.PERFIL_PERSONA">
-            <End Role="PERFIL" EntitySet="PERFIL" />
-            <End Role="PERSONA" EntitySet="PERSONA" />
-          </AssociationSet>
           <FunctionImport Name="ADD_PRODUCTO_PROCEDURE">
             <Parameter Name="NOMBRE_PRODUCTO" Mode="In" Type="String" />
             <Parameter Name="CATEGORIA_PRODUCTO" Mode="In" Type="Decimal" />
@@ -542,11 +474,6 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
             <Parameter Name="SUBCATE_NOMBRE" Mode="In" Type="String" />
             <Parameter Name="ID_CATEGORIA" Mode="In" Type="String" />
           </FunctionImport>
-          <EntitySet Name="EMPRESA" EntityType="ModelOfertas.EMPRESA" />
-          <AssociationSet Name="TIENDA_EMPRESA_FK" Association="ModelOfertas.TIENDA_EMPRESA_FK">
-            <End Role="EMPRESA" EntitySet="EMPRESA" />
-            <End Role="TIENDA" EntitySet="TIENDA" />
-          </AssociationSet>
           <FunctionImport Name="ADD_EMPRESA_PROCEDURE">
             <Parameter Name="NOMBRE_EMPRESA" Mode="In" Type="String" />
             <Parameter Name="RUT_EMPRESA" Mode="In" Type="String" />
@@ -558,7 +485,6 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
             <Parameter Name="EMPRESA_TIENDA" Mode="In" Type="Decimal" />
             <Parameter Name="COMUNA_TIENDA" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <EntitySet Name="PRODUCTO_VISTA" EntityType="ModelOfertas.PRODUCTO_VISTA" />
           <FunctionImport Name="ADD_OFERTA_PROCEDURE">
             <Parameter Name="PRODUCTO_OFERTA" Mode="In" Type="Decimal" />
             <Parameter Name="ESTADO" Mode="In" Type="String" />
@@ -610,14 +536,69 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
             <Parameter Name="IMAGEN_PRODUCTO" Mode="In" Type="String" />
             <Parameter Name="ID_PRODUCTO" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <EntitySet Name="CATEGORIA" EntityType="ModelOfertas.CATEGORIA" />
+          <EntitySet Name="COMUNA" EntityType="ModelOfertas.COMUNA" />
           <EntitySet Name="CUPON" EntityType="ModelOfertas.CUPON" />
           <EntitySet Name="DESCUENTO" EntityType="ModelOfertas.DESCUENTO" />
+          <EntitySet Name="EMPRESA" EntityType="ModelOfertas.EMPRESA" />
+          <EntitySet Name="OFERTA" EntityType="ModelOfertas.OFERTA" />
+          <EntitySet Name="PERFIL" EntityType="ModelOfertas.PERFIL" />
+          <EntitySet Name="PERFIL_PERSONA" EntityType="ModelOfertas.PERFIL_PERSONA" />
+          <EntitySet Name="PERSONA" EntityType="ModelOfertas.PERSONA" />
+          <EntitySet Name="PRODUCTO" EntityType="ModelOfertas.PRODUCTO" />
+          <EntitySet Name="PROVINCIA" EntityType="ModelOfertas.PROVINCIA" />
+          <EntitySet Name="REGION" EntityType="ModelOfertas.REGION" />
+          <EntitySet Name="SUBCATE" EntityType="ModelOfertas.SUBCATE" />
+          <EntitySet Name="TIENDA" EntityType="ModelOfertas.TIENDA" />
+          <AssociationSet Name="CATEGORIA_SUBCATE_FK" Association="ModelOfertas.CATEGORIA_SUBCATE_FK">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="SUBCATE" EntitySet="SUBCATE" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTO_CATEGORIA_FK" Association="ModelOfertas.PRODUCTO_CATEGORIA_FK">
+            <End Role="CATEGORIA" EntitySet="CATEGORIA" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="COMUNA_PROVINCIA_FK" Association="ModelOfertas.COMUNA_PROVINCIA_FK">
+            <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+            <End Role="COMUNA" EntitySet="COMUNA" />
+          </AssociationSet>
+          <AssociationSet Name="PERSONA_COMUNA_FK" Association="ModelOfertas.PERSONA_COMUNA_FK">
+            <End Role="COMUNA" EntitySet="COMUNA" />
+            <End Role="PERSONA" EntitySet="PERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="TIENDA_COMUNA_FK" Association="ModelOfertas.TIENDA_COMUNA_FK">
+            <End Role="COMUNA" EntitySet="COMUNA" />
+            <End Role="TIENDA" EntitySet="TIENDA" />
+          </AssociationSet>
           <AssociationSet Name="CUPON_DESCUENTO_FK" Association="ModelOfertas.CUPON_DESCUENTO_FK">
             <End Role="DESCUENTO" EntitySet="DESCUENTO" />
             <End Role="CUPON" EntitySet="CUPON" />
           </AssociationSet>
-          <EntitySet Name="MOSTRAROFERTA_VISTA" EntityType="ModelOfertas.MOSTRAROFERTA_VISTA" />
-        </EntityContainer>
+          <AssociationSet Name="TIENDA_EMPRESA_FK" Association="ModelOfertas.TIENDA_EMPRESA_FK">
+            <End Role="EMPRESA" EntitySet="EMPRESA" />
+            <End Role="TIENDA" EntitySet="TIENDA" />
+          </AssociationSet>
+          <AssociationSet Name="OFERTA_PRODUCTO_FK" Association="ModelOfertas.OFERTA_PRODUCTO_FK">
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+            <End Role="OFERTA" EntitySet="OFERTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERFIL_PERSONA_ID_PERFIL" Association="ModelOfertas.FK_PERFIL_PERSONA_ID_PERFIL">
+            <End Role="PERFIL" EntitySet="PERFIL" />
+            <End Role="PERFIL_PERSONA" EntitySet="PERFIL_PERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERFIL_PERSONA_ID_PERSONA" Association="ModelOfertas.FK_PERFIL_PERSONA_ID_PERSONA">
+            <End Role="PERSONA" EntitySet="PERSONA" />
+            <End Role="PERFIL_PERSONA" EntitySet="PERFIL_PERSONA" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCTO_TIENDA_FK" Association="ModelOfertas.PRODUCTO_TIENDA_FK">
+            <End Role="TIENDA" EntitySet="TIENDA" />
+            <End Role="PRODUCTO" EntitySet="PRODUCTO" />
+          </AssociationSet>
+          <AssociationSet Name="PROVINCIA_REGION_FK" Association="ModelOfertas.PROVINCIA_REGION_FK">
+            <End Role="REGION" EntitySet="REGION" />
+            <End Role="PROVINCIA" EntitySet="PROVINCIA" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="CATEGORIA">
           <Key>
             <PropertyRef Name="ID" />
@@ -638,6 +619,32 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
           <NavigationProperty Name="PERSONA" Relationship="ModelOfertas.PERSONA_COMUNA_FK" FromRole="COMUNA" ToRole="PERSONA" />
           <NavigationProperty Name="TIENDA" Relationship="ModelOfertas.TIENDA_COMUNA_FK" FromRole="COMUNA" ToRole="TIENDA" />
         </EntityType>
+        <EntityType Name="CUPON">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="DESCUENTO_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="PERFIL_PERSONA_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <NavigationProperty Name="DESCUENTO" Relationship="ModelOfertas.CUPON_DESCUENTO_FK" FromRole="CUPON" ToRole="DESCUENTO" />
+        </EntityType>
+        <EntityType Name="DESCUENTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="PORCENTAJE" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <NavigationProperty Name="CUPON" Relationship="ModelOfertas.CUPON_DESCUENTO_FK" FromRole="DESCUENTO" ToRole="CUPON" />
+        </EntityType>
+        <EntityType Name="EMPRESA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="RUT" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TIENDA" Relationship="ModelOfertas.TIENDA_EMPRESA_FK" FromRole="EMPRESA" ToRole="TIENDA" />
+        </EntityType>
         <EntityType Name="OFERTA">
           <Key>
             <PropertyRef Name="ID" />
@@ -656,7 +663,18 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
           </Key>
           <Property Name="ID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PERSONA" Relationship="ModelOfertas.PERFIL_PERSONA" FromRole="PERFIL" ToRole="PERSONA" />
+          <NavigationProperty Name="PERFIL_PERSONA" Relationship="ModelOfertas.FK_PERFIL_PERSONA_ID_PERFIL" FromRole="PERFIL" ToRole="PERFIL_PERSONA" />
+        </EntityType>
+        <EntityType Name="PERFIL_PERSONA">
+          <Key>
+            <PropertyRef Name="ID_PERSONA" />
+            <PropertyRef Name="ID_PERFIL" />
+          </Key>
+          <Property Name="ID_PERSONA" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ID_PERFIL" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ID" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="PERFIL" Relationship="ModelOfertas.FK_PERFIL_PERSONA_ID_PERFIL" FromRole="PERFIL_PERSONA" ToRole="PERFIL" />
+          <NavigationProperty Name="PERSONA" Relationship="ModelOfertas.FK_PERFIL_PERSONA_ID_PERSONA" FromRole="PERFIL_PERSONA" ToRole="PERSONA" />
         </EntityType>
         <EntityType Name="PERSONA">
           <Key>
@@ -679,7 +697,7 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
           <Property Name="APELLIDO" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="COMUNA_ID" Type="Decimal" Precision="38" Scale="0" />
           <NavigationProperty Name="COMUNA" Relationship="ModelOfertas.PERSONA_COMUNA_FK" FromRole="PERSONA" ToRole="COMUNA" />
-          <NavigationProperty Name="PERFIL" Relationship="ModelOfertas.PERFIL_PERSONA" FromRole="PERSONA" ToRole="PERFIL" />
+          <NavigationProperty Name="PERFIL_PERSONA" Relationship="ModelOfertas.FK_PERFIL_PERSONA_ID_PERSONA" FromRole="PERSONA" ToRole="PERFIL_PERSONA" />
         </EntityType>
         <EntityType Name="PRODUCTO">
           <Key>
@@ -731,11 +749,11 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
           <Property Name="EMPRESA_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
           <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="COMUNA" Relationship="ModelOfertas.TIENDA_COMUNA_FK" FromRole="TIENDA" ToRole="COMUNA" />
-          <NavigationProperty Name="PRODUCTO" Relationship="ModelOfertas.PRODUCTO_TIENDA_FK" FromRole="TIENDA" ToRole="PRODUCTO" />
           <Property Name="CALLE" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="NRO" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="COMUNA" Relationship="ModelOfertas.TIENDA_COMUNA_FK" FromRole="TIENDA" ToRole="COMUNA" />
           <NavigationProperty Name="EMPRESA" Relationship="ModelOfertas.TIENDA_EMPRESA_FK" FromRole="TIENDA" ToRole="EMPRESA" />
+          <NavigationProperty Name="PRODUCTO" Relationship="ModelOfertas.PRODUCTO_TIENDA_FK" FromRole="TIENDA" ToRole="PRODUCTO" />
         </EntityType>
         <Association Name="CATEGORIA_SUBCATE_FK">
           <End Type="ModelOfertas.CATEGORIA" Role="CATEGORIA" Multiplicity="1" />
@@ -797,6 +815,30 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="CUPON_DESCUENTO_FK">
+          <End Type="ModelOfertas.DESCUENTO" Role="DESCUENTO" Multiplicity="1" />
+          <End Type="ModelOfertas.CUPON" Role="CUPON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DESCUENTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CUPON">
+              <PropertyRef Name="DESCUENTO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TIENDA_EMPRESA_FK">
+          <End Type="ModelOfertas.EMPRESA" Role="EMPRESA" Multiplicity="1" />
+          <End Type="ModelOfertas.TIENDA" Role="TIENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPRESA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TIENDA">
+              <PropertyRef Name="EMPRESA_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="OFERTA_PRODUCTO_FK">
           <End Type="ModelOfertas.PRODUCTO" Role="PRODUCTO" Multiplicity="1" />
           <End Type="ModelOfertas.OFERTA" Role="OFERTA" Multiplicity="*" />
@@ -806,6 +848,34 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
             </Principal>
             <Dependent Role="OFERTA">
               <PropertyRef Name="PRODUCTO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERFIL_PERSONA_ID_PERFIL">
+          <End Type="ModelOfertas.PERFIL" Role="PERFIL" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ModelOfertas.PERFIL_PERSONA" Role="PERFIL_PERSONA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERFIL">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PERFIL_PERSONA">
+              <PropertyRef Name="ID_PERFIL" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERFIL_PERSONA_ID_PERSONA">
+          <End Type="ModelOfertas.PERSONA" Role="PERSONA" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="ModelOfertas.PERFIL_PERSONA" Role="PERFIL_PERSONA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PERSONA">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PERFIL_PERSONA">
+              <PropertyRef Name="ID_PERSONA" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -833,88 +903,25 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PERFIL_PERSONA">
-          <End Type="ModelOfertas.PERFIL" Role="PERFIL" Multiplicity="*" />
-          <End Type="ModelOfertas.PERSONA" Role="PERSONA" Multiplicity="*" />
-        </Association>
-        <EntityType Name="EMPRESA">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="RUT" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TIENDA" Relationship="ModelOfertas.TIENDA_EMPRESA_FK" FromRole="EMPRESA" ToRole="TIENDA" />
-        </EntityType>
-        <Association Name="TIENDA_EMPRESA_FK">
-          <End Type="ModelOfertas.EMPRESA" Role="EMPRESA" Multiplicity="1" />
-          <End Type="ModelOfertas.TIENDA" Role="TIENDA" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EMPRESA">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TIENDA">
-              <PropertyRef Name="EMPRESA_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="PRODUCTO_VISTA">
-          <Key>
-            <PropertyRef Name="NOMBRE" />
-            <PropertyRef Name="TIENDA" />
-            <PropertyRef Name="PRECIO" />
-          </Key>
-          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="TIENDA" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="PRECIO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-        </EntityType>
-        <EntityType Name="CUPON">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="DESCUENTO_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="PERFIL_PERSONA_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <NavigationProperty Name="DESCUENTO" Relationship="ModelOfertas.CUPON_DESCUENTO_FK" FromRole="CUPON" ToRole="DESCUENTO" />
-        </EntityType>
-        <EntityType Name="DESCUENTO">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="PORCENTAJE" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <NavigationProperty Name="CUPON" Relationship="ModelOfertas.CUPON_DESCUENTO_FK" FromRole="DESCUENTO" ToRole="CUPON" />
-        </EntityType>
-        <Association Name="CUPON_DESCUENTO_FK">
-          <End Type="ModelOfertas.DESCUENTO" Role="DESCUENTO" Multiplicity="1" />
-          <End Type="ModelOfertas.CUPON" Role="CUPON" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DESCUENTO">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="CUPON">
-              <PropertyRef Name="DESCUENTO_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="MOSTRAROFERTA_VISTA">
-          <Key>
-            <PropertyRef Name="NOMBRE" />
-            <PropertyRef Name="TIENDA" />
-            <PropertyRef Name="PRECIO" />
-            <PropertyRef Name="DSCTO" />
-          </Key>
-          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="TIENDA" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
-          <Property Name="PRECIO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-          <Property Name="DSCTO" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
-        </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelOfertasStoreContainer" CdmEntityContainer="EntitiesOfertas">
+          <FunctionImportMapping FunctionImportName="ADD_PRODUCTO_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_PRODUCTO_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_EMPRESA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_EMPRESA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_TIENDA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_TIENDA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_OFERTA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_OFERTA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_CATEGORIA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_CATEGORIA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_COMUNA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_COMUNA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_PERFIL_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_PERFIL_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_PERSONA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_PERSONA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_PROVINCIA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_PROVINCIA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_REGION_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_REGION_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="ADD_SUBCATE_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_SUBCATE_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="UPDATE_PERSONA_PROCEDURE" FunctionName="ModelOfertas.Store.UPDATE_PERSONA_PROCEDURE" />
+          <FunctionImportMapping FunctionImportName="UP_PRODUCTO_PROCEDURE" FunctionName="ModelOfertas.Store.UP_PRODUCTO_PROCEDURE" />
           <EntitySetMapping Name="CATEGORIA">
             <EntityTypeMapping TypeName="ModelOfertas.CATEGORIA">
               <MappingFragment StoreEntitySet="CATEGORIA">
@@ -929,6 +936,32 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="PROVINCIA_ID" ColumnName="PROVINCIA_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUPON">
+            <EntityTypeMapping TypeName="ModelOfertas.CUPON">
+              <MappingFragment StoreEntitySet="CUPON">
+                <ScalarProperty Name="PERFIL_PERSONA_ID" ColumnName="PERFIL_PERSONA_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DESCUENTO_ID" ColumnName="DESCUENTO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DESCUENTO">
+            <EntityTypeMapping TypeName="ModelOfertas.DESCUENTO">
+              <MappingFragment StoreEntitySet="DESCUENTO">
+                <ScalarProperty Name="PORCENTAJE" ColumnName="PORCENTAJE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPRESA">
+            <EntityTypeMapping TypeName="ModelOfertas.EMPRESA">
+              <MappingFragment StoreEntitySet="EMPRESA">
+                <ScalarProperty Name="RUT" ColumnName="RUT" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -949,6 +982,15 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
               <MappingFragment StoreEntitySet="PERFIL">
                 <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PERFIL_PERSONA">
+            <EntityTypeMapping TypeName="ModelOfertas.PERFIL_PERSONA">
+              <MappingFragment StoreEntitySet="PERFIL_PERSONA">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_PERFIL" ColumnName="ID_PERFIL" />
+                <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1022,63 +1064,6 @@ FROM "DBOFERTAS"."MOSTRAROFERTA_VISTA" "MOSTRAROFERTA_VISTA"</DefiningQuery>
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="EMPRESA_ID" ColumnName="EMPRESA_ID" />
                 <ScalarProperty Name="COMUNA_ID" ColumnName="COMUNA_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="PERFIL_PERSONA" TypeName="ModelOfertas.PERFIL_PERSONA" StoreEntitySet="PERFIL_PERSONA">
-            <EndProperty Name="PERSONA">
-              <ScalarProperty Name="ID" ColumnName="ID_PERSONA" />
-            </EndProperty>
-            <EndProperty Name="PERFIL">
-              <ScalarProperty Name="ID" ColumnName="ID_PERFIL" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="ADD_PRODUCTO_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_PRODUCTO_PROCEDURE" />
-          <EntitySetMapping Name="EMPRESA">
-            <EntityTypeMapping TypeName="ModelOfertas.EMPRESA">
-              <MappingFragment StoreEntitySet="EMPRESA">
-                <ScalarProperty Name="RUT" ColumnName="RUT" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="ADD_EMPRESA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_EMPRESA_PROCEDURE" />
-          <FunctionImportMapping FunctionImportName="ADD_TIENDA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_TIENDA_PROCEDURE" />
-          <FunctionImportMapping FunctionImportName="ADD_OFERTA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_OFERTA_PROCEDURE" />
-          <FunctionImportMapping FunctionImportName="ADD_CATEGORIA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_CATEGORIA_PROCEDURE" />
-          <FunctionImportMapping FunctionImportName="ADD_COMUNA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_COMUNA_PROCEDURE" />
-          <FunctionImportMapping FunctionImportName="ADD_PERFIL_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_PERFIL_PROCEDURE" />
-          <FunctionImportMapping FunctionImportName="ADD_PERSONA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_PERSONA_PROCEDURE" />
-          <FunctionImportMapping FunctionImportName="ADD_PROVINCIA_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_PROVINCIA_PROCEDURE" />
-          <FunctionImportMapping FunctionImportName="ADD_REGION_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_REGION_PROCEDURE" />
-          <FunctionImportMapping FunctionImportName="ADD_SUBCATE_PROCEDURE" FunctionName="ModelOfertas.Store.ADD_SUBCATE_PROCEDURE" />
-          <FunctionImportMapping FunctionImportName="UPDATE_PERSONA_PROCEDURE" FunctionName="ModelOfertas.Store.UPDATE_PERSONA_PROCEDURE" />
-          <FunctionImportMapping FunctionImportName="UP_PRODUCTO_PROCEDURE" FunctionName="ModelOfertas.Store.UP_PRODUCTO_PROCEDURE" />
-          <EntitySetMapping Name="CUPON">
-            <EntityTypeMapping TypeName="ModelOfertas.CUPON">
-              <MappingFragment StoreEntitySet="CUPON">
-                <ScalarProperty Name="PERFIL_PERSONA_ID" ColumnName="PERFIL_PERSONA_ID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="DESCUENTO_ID" ColumnName="DESCUENTO_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DESCUENTO">
-            <EntityTypeMapping TypeName="ModelOfertas.DESCUENTO">
-              <MappingFragment StoreEntitySet="DESCUENTO">
-                <ScalarProperty Name="PORCENTAJE" ColumnName="PORCENTAJE" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MOSTRAROFERTA_VISTA">
-            <EntityTypeMapping TypeName="ModelOfertas.MOSTRAROFERTA_VISTA">
-              <MappingFragment StoreEntitySet="MOSTRAROFERTA_VISTA">
-                <ScalarProperty Name="DSCTO" ColumnName="DSCTO" />
-                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
-                <ScalarProperty Name="TIENDA" ColumnName="TIENDA" />
-                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

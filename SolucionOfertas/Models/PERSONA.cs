@@ -17,7 +17,7 @@ namespace SolucionOfertas.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PERSONA()
         {
-            this.PERFIL = new HashSet<PERFIL>();
+            this.PERFIL_PERSONA = new HashSet<PERFIL_PERSONA>();
         }
     
         public string ID { get; set; }
@@ -39,6 +39,6 @@ namespace SolucionOfertas.Models
     
         public virtual COMUNA COMUNA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PERFIL> PERFIL { get; set; }
+        public virtual ICollection<PERFIL_PERSONA> PERFIL_PERSONA { get; set; }
     }
 }
