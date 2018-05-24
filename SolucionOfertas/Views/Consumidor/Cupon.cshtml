@@ -3,6 +3,7 @@
     ViewBag.Title = "Cupon";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <meta charset="UTF-8">
 <br />
 <br />
@@ -18,7 +19,7 @@
 			return ret.length == 1 ? "0" + ret : ret;
 		};
     </script>
-
+    
     <div>
         <img id="barcode" />
         <script>JsBarcode("#barcode", "9780199532179", {
