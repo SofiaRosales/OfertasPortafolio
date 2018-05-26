@@ -13,17 +13,17 @@
 <center>
     <h2>Cupon Descuento</h2>
     <script src="../dist/JsBarcode.all.js"></script>
-    <script>
+    @*<script>
 		Number.prototype.zeroPadding = function(){
 			var ret = "" + this.valueOf();
 			return ret.length == 1 ? "0" + ret : ret;
 		};
-    </script>
+    </script>*@
     
     <div>
         <img id="barcode" />
         <script>JsBarcode("#barcode", "9780199532179", {
-			format:"EAN13",
+			//format:"EAN13",
 			displayValue:true,
 			fontSize:20
 		});</script>

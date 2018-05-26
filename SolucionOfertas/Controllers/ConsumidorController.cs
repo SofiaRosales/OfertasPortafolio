@@ -22,6 +22,7 @@ namespace LoginOfertas3.Controllers
 
         public ActionResult add_descuento(decimal porcentaje)
         {
+            
             //entityOferta.ADD_DESCUENTO_PROCEDURE(porcentaje);
             return RedirectToAction("Cupon");
         }
